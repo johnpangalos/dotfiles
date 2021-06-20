@@ -1,25 +1,22 @@
-setopt promptsubst
+autoload -Uz compinit
+compinit
+# Generate new ~/.config/zr.zsh if it does not exist or if ~/.zshrc has been changed
+if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
+  zr \
+    ohmyzsh/ohmyzsh.git/lib/git.zsh \
+    frmendes/geometry \
+    junegunn/fzf.git/shell/key-bindings.zsh \
+    ohmyzsh/ohmyzsh.git/plugins/git/git.plugin.zsh \
+    zsh-users/zsh-syntax-highlighting \
+    zsh-users/zsh-completions \
+    zsh-users/zsh-autosuggestions \
+    > ~/.config/zr.zsh
+fi
 
-source /opt/homebrew/opt/zinit/zinit.zsh
+source ~/.config/zr.zsh
 
-zinit wait lucid light-mode for \
-  atinit"zicompinit; zicdreplay" \
-      zdharma/fast-syntax-highlighting \
-  atload"_zsh_autosuggest_start" \
-      zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
-      zsh-users/zsh-completions
-
-zinit wait lucid for \
-        OMZL::git.zsh \
-  atload"unalias grv" \
-        OMZP::git
-
-PS1="READY >"
-
-GEOMETRY_COLOR_DIR=152
-zinit ice lucid atload"geometry::prompt"
-zinit light geometry-zsh/geometry
+# Setup fnm https://github.com/Schniz/fnm
+eval "$(fnm env)"
 
 export EDITOR="nvim"
 export BROWSER=none
@@ -30,7 +27,8 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
-alias vimrc="vim ~/.config/nvim/init.vim"
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+alias brew='arch -arm64e /opt/homebrew/bin/brew'
