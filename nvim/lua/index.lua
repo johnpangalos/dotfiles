@@ -1,0 +1,5 @@
+require("plugins")
+require("telescope")
+require("lsp")
+require("format")
+require("autocomplete")
