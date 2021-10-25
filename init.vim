@@ -5,27 +5,18 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-sensible'
 Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/fountain.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
-
-" Theme
-Plug 'sainnhe/gruvbox-material'
 
 " Buffer Management and search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Linting and Completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
+Plug 'dense-analysis/ale'
+
+Plug 'vim-airline/vim-airline'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'bluz71/vim-moonfly-colors'
 
 call plug#end()
 
@@ -39,6 +30,7 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set number
 set mouse=a
 set backupcopy=yes
+set termguicolors
 
 " map leader x to close extra windows
 noremap <Leader>x :ccl <bar> lcl<CR>
@@ -47,20 +39,31 @@ noremap <Leader>x :ccl <bar> lcl<CR>
 set clipboard+=unnamedplus
 
 " set grep to ripgrep and remove need for flags
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+set grepprg=rg\ --hidden\ --vimgrep\ --smart-case\ --follow
 
 """""""""""""""""""""""""""""""""""
-" 
-" Theming
+"
+" Color scheme
 "
 """""""""""""""""""""""""""""""""""
-set termguicolors
-let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_transparent_background = 1
-colorscheme gruvbox-material 
+" Make comments italics and gray
+" highlight Comment cterm=italic gui=italic guifg=gray ctermfg=gray
+
+colorscheme moonfly
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Set background to be the same as terminal
+" highlight Normal guibg=none ctermbg=none
+
+"""""""""""""""""""""""""""""""""""
+"
+" Color scheme
+"
+"""""""""""""""""""""""""""""""""""
+" Don't use non standard characters in the status bar
+let g:airline_symbols_ascii = 1
 
 """""""""""""""""""""""""""""""""""
 "
@@ -100,6 +103,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """""""""""""""""""""""""""""""""""
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
+nmap <Leader>f :Rg<CR>
 " Don't match file name on search (super annoying)
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
@@ -112,84 +116,46 @@ let g:NERDSpaceDelims = 1
 
 """""""""""""""""""""""""""""""""""
 "
-" Configuring COC
+" Configuring Ale
 "
 """""""""""""""""""""""""""""""""""
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+let g:ale_fixers = {
+  \ 'typescript': ['eslint', 'prettier'],
+  \ 'javascript': ['eslint', 'prettier'],
+  \ 'go': ['gofmt', 'goimports'],
+  \ 'markdown': ['prettier'],
+  \ 'json': ['prettier'],
+  \ 'yaml': ['prettier'],
+\}
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+let g:ale_linters = {
+  \'typescript': ['tsserver', 'eslint'],
+  \'javascript': ['eslint'],
+  \ 'go': ['golint', 'govet', 'gopls'],
+\}
 
-nmap <leader>do <Plug>(coc-codeaction)
-nmap <leader>rn <Plug>(coc-rename)
-nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+nmap <Leader>d :ALEGoToDefinition<CR>
+nmap <Leader>i :ALEHover<CR>
+nmap <Leader>r :ALERename<CR>
 
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-
-let g:svelte_preprocessor_tags = [
-  \ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' }
-  \ ]
-let g:svelte_preprocessors = ['ts']
+let g:ale_floating_preview = 1
+let g:ale_detail_to_floating_preview = 1
+let g:ale_cursor_detail = 1
 
 """""""""""""""""""""""""""""""""""
 "
-" Writing
+" Configuring TreeSitter
 "
 """""""""""""""""""""""""""""""""""
-au BufRead,BufNewFile *.fountain set filetype=fountain
-au BufRead,BufNewFile *.md set spell spelllang=en_us
-au BufRead,BufNewFile *.fountain set spell spelllang=en_us
-
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
+    additional_vim_regex_highlighting = false,
   },
 }
 EOF
-
-"""""""""""""""""""""""""""""""""""
-"
-" Configuring Coc vim
-"
-"""""""""""""""""""""""""""""""""""
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
