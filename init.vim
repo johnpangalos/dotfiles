@@ -137,9 +137,9 @@ let g:ale_linters = {
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 
-nmap <Leader>d :ALEGoToDefinition<CR>
-nmap <Leader>i :ALEHover<CR>
-nmap <Leader>r :ALERename<CR>
+nmap gd :ALEGoToDefinition<CR>
+nmap K :ALEHover<CR>
+nmap rn :ALERename<CR>
 
 let g:ale_floating_preview = 1
 let g:ale_detail_to_floating_preview = 1
