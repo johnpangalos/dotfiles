@@ -72,83 +72,103 @@ _G.packer_plugins = {
   ["Comment.nvim"] = {
     config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0" },
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/Comment.nvim"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-cmdline"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-cmdline"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    url = "https://github.com/hrsh7th/cmp-cmdline"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-path"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-path"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   ["formatter.nvim"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
   },
   ["github-nvim-theme"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/github-nvim-theme"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
+    url = "https://github.com/projekt0n/github-nvim-theme"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lsp-installer"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-refactor"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-refactor"
   },
   ["nvim-treesitter-textobjects"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+    path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/johnpangalos/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim",
     wants = { "popup.nvim", "plenary.nvim", "telescope-fzf-native.nvim" }
   }
 }

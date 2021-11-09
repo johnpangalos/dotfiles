@@ -1,7 +1,15 @@
 local function prettier()
 	return {
-		exe = "prettier_d_slim",
-		args = { "--stdin", "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
+		exe = "./node_modules/.bin/prettier",
+		args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
+		stdin = true,
+	}
+end
+
+local function gofmt()
+	return {
+		exe = "go fmt",
+		args = { vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
 		stdin = true,
 	}
 end
@@ -14,6 +22,7 @@ require("formatter").setup({
 	filetype = {
 		javascriptreact = { prettier },
 		javascript = { prettier },
+		svelte = { prettier },
 		typescript = { prettier },
 		typescriptreact = { prettier },
 		markdown = { prettier },
@@ -21,6 +30,7 @@ require("formatter").setup({
 		html = { prettier },
 		css = { prettier },
 		lua = { stylua },
+		go = { gofmt },
 	},
 })
 
@@ -28,7 +38,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.tsx,*.jsx,*.html,*.css,*.lua,*.md FormatWrite
+  autocmd BufWritePost *.go,*.js,*.ts,*.tsx,*.jsx,*.html,*.css,*.lua,*.md,*.svelte FormatWrite
 augroup END
 ]],
 	true

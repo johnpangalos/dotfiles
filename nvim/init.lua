@@ -56,4 +56,5 @@ g.nvim_tree_icons = {
 	},
 }
 
+g.nvim_tree_disable_window_picker = 1
 require("index")
