@@ -38,7 +38,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.go,*.js,*.ts,*.tsx,*.jsx,*.html,*.css,*.lua,*.md,*.svelte FormatWrite
+  autocmd BufWritePost *.json,*.go,*.js,*.ts,*.tsx,*.jsx,*.html,*.css,*.lua,*.md,*.svelte FormatWrite
 augroup END
 ]],
 	true

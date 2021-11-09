@@ -2,6 +2,7 @@ vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup(function()
 	use("wbthomason/packer.nvim")
+	use("lewis6991/impatient.nvim")
 
 	-- Search
 	use({
@@ -58,5 +59,7 @@ return require("packer").startup(function()
 			require("Comment").setup()
 		end,
 	})
+
 	use("L3MON4D3/LuaSnip")
+	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 end)
