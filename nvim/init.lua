@@ -33,6 +33,7 @@ o.expandtab = true
 o.shiftwidth = 2
 o.smarttab = true
 o.completeopt = "menuone,noselect"
+vim.cmd([[set shortmess+=c]])
 
 vim.opt.termguicolors = true
 vim.cmd([[syntax enable]])

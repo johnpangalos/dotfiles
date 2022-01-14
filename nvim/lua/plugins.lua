@@ -37,6 +37,8 @@ return require("packer").startup(function()
 		"williamboman/nvim-lsp-installer",
 	})
 
+	use({ "simrat39/rust-tools.nvim" })
+
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		requires = {
@@ -51,7 +53,7 @@ return require("packer").startup(function()
 	use("nvim-lualine/lualine.nvim")
 
 	use("projekt0n/github-nvim-theme")
-	use("kyazdani42/nvim-tree.lua")
+	use("preservim/nerdtree")
 
 	use({
 		"numToStr/Comment.nvim",
@@ -59,7 +61,7 @@ return require("packer").startup(function()
 			require("Comment").setup()
 		end,
 	})
-
-	use("L3MON4D3/LuaSnip")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/vim-vsnip")
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 end)
