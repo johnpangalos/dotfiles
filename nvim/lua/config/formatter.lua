@@ -1,7 +1,7 @@
 local function prettier()
 	return {
-		exe = "prettier",
-		args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
+		exe = "./node_modules/.bin/prettier",
+		args = { "--plugin-search-dir=.", "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
 		stdin = true,
 	}
 end
@@ -9,6 +9,7 @@ end
 local function gofmt()
 	return {
 		exe = "gofmt",
+		args = { "-w" },
 		stdin = true,
 	}
 end

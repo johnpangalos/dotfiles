@@ -35,6 +35,8 @@ return require("packer").startup(function()
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/nvim-cmp",
 		"williamboman/nvim-lsp-installer",
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip",
 	})
 
 	use({ "simrat39/rust-tools.nvim" })
@@ -61,7 +63,4 @@ return require("packer").startup(function()
 			require("Comment").setup()
 		end,
 	})
-	use("hrsh7th/cmp-vsnip")
-	use("hrsh7th/vim-vsnip")
-	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 end)
