@@ -16,7 +16,7 @@ fi
 source ~/.config/zr.zsh
 
 # Setup fnm https://github.com/Schniz/fnm
-eval "$(fnm env)"
+ eval "$(fnm env)"
 
 export EDITOR="nvim"
 export BROWSER=none
@@ -24,11 +24,10 @@ alias vim="nvim"
 
 # Setup FZF
 if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias ibrew='arch -x86_64 /usr/local/bin/brew'
-alias brew='arch -arm64e /opt/homebrew/bin/brew'
+export PATH="$HOME/go/bin/:$PATH"
