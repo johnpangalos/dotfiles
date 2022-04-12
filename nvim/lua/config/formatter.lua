@@ -9,7 +9,7 @@ end
 local function gofmt()
 	return {
 		exe = "gofmt",
-		args = { "-w" },
+		-- args = { "-w" },
 		stdin = true,
 	}
 end
