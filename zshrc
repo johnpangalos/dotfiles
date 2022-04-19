@@ -16,7 +16,7 @@ fi
 source ~/.config/zr.zsh
 
 # Setup fnm https://github.com/Schniz/fnm
- eval "$(fnm env)"
+eval "$(fnm env)"
 
 export EDITOR="nvim"
 export BROWSER=none
@@ -30,4 +30,8 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH="$HOME/go/bin/:$PATH"
+# export PATH="$HOME/go/bin/:$PATH"
+export GITLAB_AUTH_TOKEN="glpat-wtPp4RMuHQtyKA3Ri_Hq"
+export GOPRIVATE="gitlab.com/junitechnology/"
+
+alias ls="exa"

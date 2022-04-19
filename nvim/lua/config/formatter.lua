@@ -43,6 +43,7 @@ require("formatter").setup({
 		typescriptreact = { prettier },
 		markdown = { prettier },
 		json = { prettier },
+		yml = { prettier },
 		html = { prettier },
 		css = { prettier },
 		lua = { stylua },
