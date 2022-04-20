@@ -31,7 +31,5 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # export PATH="$HOME/go/bin/:$PATH"
-export GITLAB_AUTH_TOKEN="glpat-wtPp4RMuHQtyKA3Ri_Hq"
-export GOPRIVATE="gitlab.com/junitechnology/"
 
 alias ls="exa"
