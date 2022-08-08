@@ -54,16 +54,18 @@ return require("packer").startup(function()
 
 	use("nvim-lualine/lualine.nvim")
 
-	-- use("projekt0n/github-nvim-theme")
 	use("preservim/nerdtree")
-  use({
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      tag = 'v1.*',
-      config = function()
-          vim.cmd('colorscheme rose-pine')
-      end
-  })
+
+	use("elvessousa/sobrio")
+	-- use("projekt0n/github-nvim-theme")
+	-- use({
+	--     'rose-pine/neovim',
+	--     as = 'rose-pine',
+	--     tag = 'v1.*',
+	--     config = function()
+	--         vim.cmd('colorscheme rose-pine')
+	--     end
+	-- })
 
 	use({
 		"numToStr/Comment.nvim",
@@ -72,3 +74,4 @@ return require("packer").startup(function()
 		end,
 	})
 end)
+
