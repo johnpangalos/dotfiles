@@ -38,26 +38,6 @@ vim.cmd([[set shortmess+=c]])
 vim.opt.termguicolors = true
 vim.cmd([[syntax enable]])
 
-g.nvim_tree_show_icons = {
-	git = 0,
-	folders = 1,
-	files = 0,
-	folder_arrows = 1,
-}
-g.nvim_tree_icons = {
-	folder = {
-		arrow_open = "-",
-		arrow_closed = ">",
-		default = "",
-		open = "",
-		empty = "",
-		empty_open = "",
-		symlink = "",
-		symlink_open = "",
-	},
-}
-
-g.nvim_tree_disable_window_picker = 1
 require("index")
 
 vim.cmd("colorscheme sobrio")

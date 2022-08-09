@@ -8,3 +8,4 @@ require("config.lualine")
 require("config.theme")
 require("config.rust-config")
 require("config.nerd-tree")
+
