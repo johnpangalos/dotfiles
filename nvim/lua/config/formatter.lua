@@ -1,64 +1,23 @@
-local function prettier()
-  return {
-    exe = "prettier",
-    args = { "--plugin-search-dir=.", "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
-    stdin = true,
-  }
-end
+local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local function gofmt()
-  return {
-    exe = "gofmt",
-    -- args = { "-w" },
-    stdin = true,
-  }
-end
-
-local function stylua()
-  return { exe = "stylua", args = { "--search-parent-directories", "-" }, stdin = true }
-end
-
-local function rustfmt()
-  return {
-    exe = "rustfmt",
-    args = { "--emit=stdout --edition 2018" },
-    stdin = true,
-  }
-end
-
-local function terraform()
-  return {
-    exe = "terraform",
-    args = { "fmt", "-" },
-    stdin = true,
-  }
-end
-
-require("formatter").setup({
-  filetype = {
-    javascriptreact = { prettier },
-    javascript = { prettier },
-    svelte = { prettier },
-    typescript = { prettier },
-    typescriptreact = { prettier },
-    markdown = { prettier },
-    json = { prettier },
-    yml = { prettier },
-    html = { prettier },
-    css = { prettier },
-    lua = { stylua },
-    go = { gofmt },
-    rust = { rustfmt },
-    terraform = { terraform },
-  },
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.diagnostics.eslint,
+		null_ls.builtins.formatting.zigfmt,
+	},
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format()
+				end,
+			})
+		end
+	end,
 })
-
-vim.api.nvim_exec(
-  [[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.rs,*.json,*.go,*.js,*.ts,*.cjs,*.tsx,*.jsx,*.html,*.css,*.lua,*.md,*.svelte,*.tf FormatWrite
-augroup END
-]],
-  true
-)

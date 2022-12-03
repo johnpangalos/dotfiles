@@ -55,7 +55,12 @@ return require("packer").startup(function()
 		run = ":TSUpdate",
 	})
 
-	use("mhartington/formatter.nvim")
+	-- use("mhartington/formatter.nvim")
+
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
 	use("nvim-lualine/lualine.nvim")
 	use({ "kyazdani42/nvim-tree.lua" })
