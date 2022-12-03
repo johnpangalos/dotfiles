@@ -34,7 +34,7 @@ local function terraform()
   }
 end
 
-require("formatter").setup {
+require("formatter").setup({
   filetype = {
     javascriptreact = { prettier },
     javascript = { prettier },
@@ -51,13 +51,13 @@ require("formatter").setup {
     rust = { rustfmt },
     terraform = { terraform },
   },
-}
+})
 
 vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.rs,*.json,*.go,*.js,*.ts,*.tsx,*.jsx,*.html,*.css,*.lua,*.md,*.svelte,*.tf FormatWrite
+  autocmd BufWritePost *.rs,*.json,*.go,*.js,*.ts,*.cjs,*.tsx,*.jsx,*.html,*.css,*.lua,*.md,*.svelte,*.tf FormatWrite
 augroup END
 ]],
   true

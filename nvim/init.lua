@@ -39,5 +39,3 @@ vim.opt.termguicolors = true
 vim.cmd([[syntax enable]])
 
 require("index")
-
-vim.cmd("colorscheme sobrio")
