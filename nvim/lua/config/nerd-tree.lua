@@ -1,15 +1,4 @@
 local map = require("utils").map
---
---
--- -- Exit Vim if NERDTree is the only window remaining in the only tab.
--- vim.cmd(
---   [[ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NvimTree') && b:NvimTree.isTabTree() | quit | endif ]]
--- )
---
--- -- If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
--- vim.cmd(
--- 	[[ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif]]
--- )
 
 require("nvim-tree").setup({
   git = {
@@ -18,11 +7,6 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
     adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
   },
   renderer = {
     group_empty = true,

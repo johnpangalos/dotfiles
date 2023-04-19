@@ -9,14 +9,14 @@ if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
     ohmyzsh/ohmyzsh.git/plugins/git/git.plugin.zsh \
     zsh-users/zsh-syntax-highlighting \
     zsh-users/zsh-completions \
-    zsh-users/zsh-autosuggestions \
     > ~/.config/zr.zsh
 fi
 
+    # zsh-users/zsh-autosuggestions \
 source ~/.config/zr.zsh
 
 # Setup fnm https://github.com/Schniz/fnm
-eval "$(fnm env)"
+ eval "$(fnm env)"
 
 export EDITOR="nvim"
 export BROWSER=none
@@ -30,6 +30,35 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# export PATH="$HOME/go/bin/:$PATH"
+export PATH="~/.local/share/nvim/lsp_servers/:$PATH"
+export PATH="$HOME/go/bin/:$PATH"
+export MACOSX_DEPLOYMENT_TARGET=10.7
+#[ -f "/Users/johnpangalos/.ghcup/env" ] && source "/Users/johnpangalos/.ghcup/env" # ghcup-env
+[ -f "/Users/johnpangalos/.ghcup/env" ] && source "/Users/johnpangalos/.ghcup/env" # ghcup-env
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+# kubectl completions
+source <(ei completion zsh)
+compdef _ei ei
+
+# pnpm
+export PNPM_HOME="/Users/johnpangalos/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+#
 
 alias ls="exa"
+
+# bun completions
+[ -s "/Users/johnpangalos/.bun/_bun" ] && source "/Users/johnpangalos/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="$(brew --prefix llvm@13)/bin:$HOME/.bun-tools/zig:$PATH"
+export LDFLAGS="$LDFLAGS -L$(brew --prefix llvm@13)/lib"
+export CPPFLAGS="$CPPFLAGS -I$(brew --prefix llvm@13)/include"
+
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/johnpangalos/.wiggles-service-account.json"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
