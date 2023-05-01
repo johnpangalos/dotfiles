@@ -38,10 +38,8 @@ require("nvim-tree").setup({
       },
     },
   },
-  filters = {
-    dotfiles = true,
-  },
 })
+
 map("n", "<C-n>", [[<cmd>NvimTreeToggle<cr>]], silent)
 map("n", "<leader>n", [[<cmd>NvimTreeFocus<cr>]], silent)
 

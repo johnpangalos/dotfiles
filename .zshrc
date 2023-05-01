@@ -1,3 +1,5 @@
+export LANG=en_US.UTF-8
+
 autoload -Uz compinit
 compinit
 # Generate new ~/.config/zr.zsh if it does not exist or if ~/.zshrc has been changed
@@ -31,10 +33,11 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="~/.local/share/nvim/lsp_servers/:$PATH"
+
 export PATH="$HOME/go/bin/:$PATH"
-export MACOSX_DEPLOYMENT_TARGET=10.7
-#[ -f "/Users/johnpangalos/.ghcup/env" ] && source "/Users/johnpangalos/.ghcup/env" # ghcup-env
+
 [ -f "/Users/johnpangalos/.ghcup/env" ] && source "/Users/johnpangalos/.ghcup/env" # ghcup-env
+
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # kubectl completions
@@ -44,15 +47,11 @@ compdef _ei ei
 # pnpm
 export PNPM_HOME="/Users/johnpangalos/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-#
 
 alias ls="exa"
 
 # bun completions
 [ -s "/Users/johnpangalos/.bun/_bun" ] && source "/Users/johnpangalos/.bun/_bun"
-
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
@@ -62,3 +61,5 @@ export CPPFLAGS="$CPPFLAGS -I$(brew --prefix llvm@13)/include"
 
 export GOOGLE_APPLICATION_CREDENTIALS="/Users/johnpangalos/.wiggles-service-account.json"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+alias config="(cd ~/.dotfiles && vim)"

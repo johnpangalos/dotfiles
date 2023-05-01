@@ -2,7 +2,7 @@
 env:
   TERM: alacritty
 import:
-  - ~/.config/alacritty/themes/colors.yml
+  - ~/.dotfiles/colors.yml
 
 font:
   size: 15.0
