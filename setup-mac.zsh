@@ -48,7 +48,7 @@ case $SHOULD_ADD_SSH_KEY in
     vared -p 'Enter your email: ' -c EMAIL
     ssh-keygen -t ed25519 -C $EMAIL -N "" -q -f $HOME/.ssh/id_ed25519
 
-    vared -p 'You will be prompted to login into GitHub to upload your ssh key there, press any key to continue.'
+    vared -p 'You will be prompted to login into GitHub to upload your ssh key there, press any key to continue.' -c TEMP
     gh auth login
 
     vared -p 'What would you like to title your ssh key on GitHub?' -C SSH_KEY_TITLE
