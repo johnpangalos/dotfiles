@@ -19,7 +19,7 @@ if ! (( $+commands[brew] )); then
     gh \
     tmux
 
-  brew install --cask firefox discord karabiner-elements rectangle
+  brew install --cask firefox discord karabiner-elements rectangle bitwarden
 else
   echo "Brew found skipping install."
 fi
