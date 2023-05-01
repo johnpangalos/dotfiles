@@ -8,6 +8,7 @@ echo "Checking for brew"
 if ! (( $+commands[brew] )); then
   echo "Brew not found, installing..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 
   brew install neovim \
     fzf \
