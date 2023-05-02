@@ -30,6 +30,7 @@ if ! (( $+commands[node] )) && (( $+commands[fnm] )); then
   echo "Node not found, installing..."
   fnm install --lts
   fnm default lts-latest 
+  eval "$(fnm env)"
   
   echo "Installing pnpm"
   curl -fsSL https://get.pnpm.io/install.sh | sh -
