@@ -113,10 +113,6 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
       done
 
       echo "Installing dark mode notify binary"
-      if [ $EUID != 0 ]; then
-        sudo "$0" "$@"
-        exit $?
-      fi
       sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
 
       echo "Dotfiles reset."
