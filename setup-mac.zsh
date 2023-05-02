@@ -46,7 +46,7 @@ vared -p 'Would you like to setup a ssh key? This set is required for dotfiles s
 case $SHOULD_ADD_SSH_KEY in
   $~YES)
     vared -p 'Enter your email: ' -c EMAIL
-    ssh-keygen -t ed25519 -C $EMAIL -N "" -q -f $HOME/.ssh/id_ed25519
+    ssh-keygen -t ed25519 -C $EMAIL -N "" -q -f $HOME/.ssh/id_ed25519.pub
 
     vared -p 'You will be prompted to login into GitHub to upload your ssh key there, press any key to continue.' -c TEMP
     gh auth login
