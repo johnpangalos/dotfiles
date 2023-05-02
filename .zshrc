@@ -57,7 +57,4 @@ export PATH="$(brew --prefix llvm@13)/bin:$HOME/.bun-tools/zig:$PATH"
 export LDFLAGS="$LDFLAGS -L$(brew --prefix llvm@13)/lib"
 export CPPFLAGS="$CPPFLAGS -I$(brew --prefix llvm@13)/include"
 
-export GOOGLE_APPLICATION_CREDENTIALS="/Users/johnpangalos/.wiggles-service-account.json"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
 alias config="(cd ~/.dotfiles && vim)"
