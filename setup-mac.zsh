@@ -33,6 +33,7 @@ if ! (( $+commands[node] )) && (( $+commands[fnm] )); then
   
   echo "Installing pnpm"
   curl -fsSL https://get.pnpm.io/install.sh | sh -
+  source ~/.zshrc
 else
   echo "Node found, skipping install."
 fi
