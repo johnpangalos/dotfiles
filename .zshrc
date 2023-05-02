@@ -40,10 +40,6 @@ export PATH="$HOME/go/bin/:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
-# kubectl completions
-source <(ei completion zsh)
-compdef _ei ei
-
 # pnpm
 export PNPM_HOME="/Users/johnpangalos/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
