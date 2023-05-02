@@ -127,5 +127,6 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
 )
 
 # Setup nvim
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
+cargo install zr
