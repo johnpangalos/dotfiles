@@ -54,7 +54,7 @@ case $SHOULD_ADD_SSH_KEY in
     gh auth login
 
     vared -p 'What would you like to title your ssh key on GitHub?' -c SSH_KEY_TITLE
-    gh ssh-key add $HOME/.ssh/id_ed25519.pub -t "$(SSH_KEY_TITLE)"
+    gh ssh-key add $HOME/.ssh/id_ed25519.pub -t "$SSH_KEY_TITLE"
     ;;
   $~NO)
     echo "Skipping dotfiles reset."
