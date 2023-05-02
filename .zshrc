@@ -1,5 +1,7 @@
 export LANG=en_US.UTF-8
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 autoload -Uz compinit
 compinit
 # Generate new ~/.config/zr.zsh if it does not exist or if ~/.zshrc has been changed
