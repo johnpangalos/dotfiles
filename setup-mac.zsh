@@ -72,7 +72,7 @@ if ! (( $+commands[rustup] )); then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-if [ -d /Applications/Alacritty.app ]; then
+if [ ! -d /Applications/Alacritty.app ]; then
   (
     cd $HOME
     git clone https://github.com/alacritty/alacritty.git 
