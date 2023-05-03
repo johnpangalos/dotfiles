@@ -83,6 +83,10 @@ if [ ! -d /Applications/Alacritty.app ]; then
     git checkout v0.11.0
     make app
     cp -R ./target/release/osx/Alacritty.app /Applications/Alacritty.app
+
+    if ! infocmp alacritty; then
+      sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+    fi
   )
   rm -rf $HOME/alacritty
 fi
