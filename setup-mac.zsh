@@ -83,8 +83,8 @@ if [ ! -d /Applications/Alacritty.app ]; then
     git checkout v0.11.0
     make app
     cp -R ./target/release/osx/Alacritty.app /Applications/Alacritty.app
-    rm -rf $HOME/alacritty
   )
+  rm -rf $HOME/alacritty
 fi
 
 # Reset dotfiles
