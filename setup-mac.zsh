@@ -78,8 +78,9 @@ if [ ! -d /Applications/Alacritty.app ]; then
     git clone https://github.com/alacritty/alacritty.git 
     cd alacritty
     git fetch --tags
-    LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-    git checkout $LATEST_TAG
+    # LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+    # git checkout $LATEST_TAG
+    git checkout v0.11.0
     make app
     cp -R ./target/release/osx/Alacritty.app /Applications/Alacritty.app
     cd ..
