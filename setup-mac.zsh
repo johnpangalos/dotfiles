@@ -82,6 +82,7 @@ if [ ! -d /Applications/Alacritty.app ]; then
     git checkout $LATEST_TAG
     make app
     cp -R ./target/release/osx/Alacritty.app /Applications/Alacritty.app
+    cd ..
     rm -rf ./alacritty
   )
 fi
