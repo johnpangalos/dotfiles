@@ -17,6 +17,7 @@ if ! (( $+commands[brew] )); then
     fnm \
     git \
     gh \
+    dockutil \
     tmux
 
   brew install --cask firefox discord karabiner-elements rectangle bitwarden docker tunnelblick
@@ -99,12 +100,15 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
   case $SHOULD_RESET in
     $~YES)
       echo "Downloading dotfiles repository"
-      git clone -q -- git@github.com:johnpangalos/dotfiles.git $HOME/.dotfiles
-      cd .dotfiles
+      if [ ! -d $HOME/.dotfiles ]; then
+        git clone -q -- git@github.com:johnpangalos/dotfiles.git $HOME/.dotfiles
+      fi
+      cd $HOME/.dotfiles
 
       echo "Resetting dotfiles"
 
       mkdir -p $HOME/.config
+      mkdir -p $HOME/Library/LaunchAgents
 
       to_copy=(
         ".config/nvim"
@@ -121,8 +125,9 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
       done
 
       echo "Installing dark mode notify binary"
+      sudo mkdir -p /usr/local/bin/
       sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
-
+      launchctl load -w ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist    
       echo "Dotfiles reset."
       ;;
     $~NO)
@@ -137,4 +142,39 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
 # Setup nvim
 # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-cargo install zr
+# Setup zr
+if ! (( $+commands[zr] )); then
+  cargo install zr
+fi
+
+# Reset dotfiles
+#
+# Remove old dotfiles and replace them with symlinks
+vared -p 'Would you like to reset the Dock?: (Y/n) ' -c SHOULD_RESET_DOCK
+(
+  case $SHOULD_RESET_DOCK in
+    $~YES)
+      defaults delete com.apple.dock persistent-apps
+      defaults delete com.apple.dock recent-apps
+
+      dock_item() {
+        printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>', "$1"
+      }
+
+      defaults write com.apple.dock persistent-apps -array \
+        "$(dock_item /Applications/Firefox.app)" \
+        "$(dock_item /Applications/Alacritty.app)" \
+        "$(dock_item /Applications/Discord.app)" \
+        "$(dock_item /Applications/Bitwarden.app)" \
+        "$(dock_item /System/Applications/System\ Preferences.app)" 
+
+      killall Dock
+      ;;
+    $~NO)
+      echo "Skipping Dock reset."
+      ;;
+    *)
+      echo "Invalid argument $SHOULD_RESET_DOCK, skipping Dock reset."
+      ;;
+  esac
+)
