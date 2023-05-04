@@ -127,7 +127,13 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
       echo "Installing dark mode notify binary"
       sudo mkdir -p /usr/local/bin/
       sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
-      launchctl load -w ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist    
+
+      UID=$(id -u)
+      if launchctl print gui/501/ke.bou.dark-mode-notify > /dev/null 2>&1 ; then
+        launchctl bootout gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
+      fi
+      launchctl bootstrap gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
+      launchctl kickstart -k gui/$UID/ke.bou.dark-mode-notify
       echo "Dotfiles reset."
       ;;
     $~NO)

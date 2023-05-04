@@ -7,17 +7,12 @@
     <string>ke.bou.dark-mode-notify</string>
     <key>KeepAlive</key>
     <true/>
-    <key>StandardErrorPath</key>
-    <string>/var/log/dark-mode-notify-stderr.log</string>
-    <key>StandardOutPath</key>
-    <string>/var/log/dark-mode-notify-stdout.log</string>
     <key>ProgramArguments</key>
     <array>
        <string>/usr/local/bin/dark-mode-notify</string>
-       <string>/bin/zsh</string>
+       <string>/bin/sh</string>
        <string>-c</string>
-       <string>$HOME/.change_background.sh</string>
-       <string>&>/dev/null</string>
+       <string>/Users/johnny/.change_background.sh</string>
     </array>
 </dict>
 </plist>
