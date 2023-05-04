@@ -153,34 +153,48 @@ if ! (( $+commands[zr] )); then
   cargo install zr
 fi
 
-# Reset dotfiles
-#
-# Remove old dotfiles and replace them with symlinks
+# Reset mac dock
 vared -p 'Would you like to reset the Dock?: (Y/n) ' -c SHOULD_RESET_DOCK
-(
-  case $SHOULD_RESET_DOCK in
-    $~YES)
-      defaults delete com.apple.dock persistent-apps
-      defaults delete com.apple.dock recent-apps
 
-      dock_item() {
-        printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>', "$1"
-      }
+case $SHOULD_RESET_DOCK in
+  $~YES)
+    defaults delete com.apple.dock persistent-apps
+    defaults delete com.apple.dock recent-apps
 
-      defaults write com.apple.dock persistent-apps -array \
-        "$(dock_item /Applications/Firefox.app)" \
-        "$(dock_item /Applications/Alacritty.app)" \
-        "$(dock_item /Applications/Discord.app)" \
-        "$(dock_item /Applications/Bitwarden.app)" \
-        "$(dock_item /System/Applications/System\ Preferences.app)" 
+    dock_item() {
+      printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>', "$1"
+    }
 
-      killall Dock
-      ;;
-    $~NO)
-      echo "Skipping Dock reset."
-      ;;
-    *)
-      echo "Invalid argument $SHOULD_RESET_DOCK, skipping Dock reset."
-      ;;
-  esac
-)
+    defaults write com.apple.dock persistent-apps -array \
+      "$(dock_item /Applications/Firefox.app)" \
+      "$(dock_item /Applications/Alacritty.app)" \
+      "$(dock_item /Applications/Discord.app)" \
+      "$(dock_item /Applications/Bitwarden.app)" \
+      "$(dock_item /System/Applications/System\ Preferences.app)" 
+
+    killall Dock
+    ;;
+  $~NO)
+    echo "Skipping Dock reset."
+    ;;
+  *)
+    echo "Invalid argument $SHOULD_RESET_DOCK, skipping Dock reset."
+    ;;
+esac
+
+vared -p 'Would you like to config git with you name and email?: (Y/n) ' -c SHOULD_CONFIG_GIT
+case $SHOULD_CONFIG_GIT in
+  $~YES)
+    vared -p 'Enter your name: ' -c NAME
+    vared -p 'Enter your email: ' -c EMAIL
+    git config --global user.name $NAME 
+    git config --global user.email $EMAIL 
+    ;;
+  $~NO)
+    echo "Skipping git config."
+    ;;
+  *)
+    echo "Invalid argument $SHOULD_CONFIG_GIT, skipping git config."
+    ;;
+esac
+
