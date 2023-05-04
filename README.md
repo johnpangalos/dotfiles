@@ -1,4 +1,7 @@
 # dotfiles
 
-This contains my dotfiles and can be bootstrapped for a new mac using the
-`./setup-mac.sh` script.
+Run the following to bootstrap your computer:
+
+```
+/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/johnpangalos/dotfiles/main/setup-mac.zsh)" 
+```
