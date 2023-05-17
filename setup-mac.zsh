@@ -116,6 +116,7 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
         ".tmux.conf"
         ".alacritty.yml"
         ".change_background.sh"
+        ".tool-versions"
         "Library/LaunchAgents/ke.bou.dark-mode-notify.plist"
       )
 
@@ -129,7 +130,7 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
       sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
 
       UID=$(id -u)
-      if launchctl print gui/501/ke.bou.dark-mode-notify > /dev/null 2>&1 ; then
+      if launchctl print gui/$UID/ke.bou.dark-mode-notify > /dev/null 2>&1 ; then
         launchctl bootout gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
       fi
       launchctl bootstrap gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
