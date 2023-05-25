@@ -6,24 +6,6 @@ local o = vim.o
 
 g.mapleader = ","
 
--- Disable some built-in plugins we don't want
-local disabled_built_ins = {
-  "gzip",
-  "man",
-  "matchit",
-  "matchparen",
-  "shada_plugin",
-  "tarPlugin",
-  "tar",
-  "zipPlugin",
-  "zip",
-  "netrwPlugin",
-}
-
-for i = 1, 10 do
-  g["loaded_" .. disabled_built_ins[i]] = 1
-end
-
 o.hidden = true
 o.splitright = true
 o.splitbelow = true
@@ -41,4 +23,44 @@ vim.cmd([[set shortmess+=c]])
 vim.opt.termguicolors = true
 vim.cmd([[syntax enable]])
 
-require("index")
+-- Setup lazy vim https://github.com/folke/lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  change_detection = {
+    notify = false,
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "rplugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
