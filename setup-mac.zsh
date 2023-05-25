@@ -20,7 +20,14 @@ if ! (( $+commands[brew] )); then
     dockutil \
     tmux
 
-  brew install --cask firefox discord karabiner-elements rectangle bitwarden docker tunnelblick
+  brew install --cask firefox \
+    discord \
+    karabiner-elements \
+    rectangle \
+    bitwarden \
+    docker \
+    tunnelblick \
+    alacritty
 else
   echo "Brew found skipping install."
 fi
@@ -64,33 +71,6 @@ case $SHOULD_ADD_SSH_KEY in
     echo "Invalid argument $SHOULD_RESET, skipping dotfiles reset."
     ;;
 esac
-
-# Install alacritty
-#
-# They don't seem to be making an arm version so we'll compile it
-# from source.
-if ! (( $+commands[rustup] )); then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-fi
-
-if [ ! -d /Applications/Alacritty.app ]; then
-  (
-    cd $HOME
-    git clone https://github.com/alacritty/alacritty.git 
-    cd alacritty
-    git fetch --tags
-    # LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-    # git checkout $LATEST_TAG
-    git checkout v0.11.0
-    make app
-    cp -R ./target/release/osx/Alacritty.app /Applications/Alacritty.app
-
-    if ! infocmp alacritty; then
-      sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
-    fi
-  )
-  rm -rf $HOME/alacritty
-fi
 
 # Reset dotfiles
 #
