@@ -1,5 +1,6 @@
 return {
   "kyazdani42/nvim-tree.lua",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   version = false,
   opts = function()
     local api = require("nvim-tree.api")
@@ -26,26 +27,26 @@ return {
       },
       renderer = {
         group_empty = true,
-        icons = {
-          show = {
-            file = false,
-            folder = true,
-            folder_arrow = true,
-            git = false,
-          },
-          glyphs = {
-            folder = {
-              arrow_open = "-",
-              arrow_closed = ">",
-              default = "",
-              open = "",
-              empty = "",
-              empty_open = "",
-              symlink = "",
-              symlink_open = "",
-            },
-          },
-        },
+        -- icons = {
+        --   show = {
+        --     file = false,
+        --     folder = true,
+        --     folder_arrow = true,
+        --     git = false,
+        --   },
+        --   glyphs = {
+        --     folder = {
+        --       arrow_open = "-",
+        --       arrow_closed = ">",
+        --       default = "",
+        --       open = "",
+        --       empty = "",
+        --       empty_open = "",
+        --       symlink = "",
+        --       symlink_open = "",
+        --     },
+        --   },
+        -- },
       },
       actions = {
         open_file = {

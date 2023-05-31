@@ -48,7 +48,7 @@ return {
     },
     ---@param opts PluginLspOpts
     config = function(_, opts)
-      -- local Util = require("lazyvim.util")
+      -- local Util = require("lazyvim.util
       -- setup autoformat
       -- require("lazyvim.plugins.lsp.format").autoformat = opts.autoformat
       -- setup formatting and keymaps
@@ -103,24 +103,6 @@ return {
           on_attach(client, buffer)
         end,
       })
-
-      -- diagnostics
-      -- for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
-      --   name = "DiagnosticSign" .. name
-      --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-      -- end
-
-      -- if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
-      --   opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
-      --     or function(diagnostic)
-      --       local icons = require("lazyvim.config").icons.diagnostics
-      --       for d, icon in pairs(icons) do
-      --         if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-      --           return icon
-      --         end
-      --       end
-      --     end
-      -- end
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
@@ -217,6 +199,30 @@ return {
       else
         ensure_installed()
       end
+    end,
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = function()
+      local trouble = require("trouble")
+      local silent = { silent = true, noremap = true }
+      vim.keymap.set("n", "<leader>xx", trouble.toggle, silent)
+      vim.keymap.set("n", "<leader>xw", function()
+        trouble.toggle({ mode = "workspace_diagnostics" })
+      end, silent)
+      vim.keymap.set("n", "<leader>xd", function()
+        trouble.toggle({ mode = "document_diagnostics" })
+      end, silent)
+      vim.keymap.set("n", "<leader>xl", function()
+        trouble.toggle({ mode = "loclist" })
+      end, silent)
+      vim.keymap.set("n", "<leader>xq", function()
+        trouble.toggle({ mode = "quickfix" })
+      end, silent)
+      vim.keymap.set("n", "gR", function()
+        trouble.toggle({ mode = "lsp_references" })
+      end, silent)
     end,
   },
 }

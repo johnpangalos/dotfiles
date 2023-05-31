@@ -1,6 +1,18 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = function()
+      return {
+        color_overrides = {
+          latte = {},
+          frappe = {},
+          macchiato = {},
+          mocha = {},
+        },
+      }
+    end,
+  },
 
   {
     "f-person/auto-dark-mode.nvim",

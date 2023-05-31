@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    lazy = true,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -58,6 +59,7 @@ return {
 
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
     build = (not jit.os:find("Windows"))
         and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
         or nil,

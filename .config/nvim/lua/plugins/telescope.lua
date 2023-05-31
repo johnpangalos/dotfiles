@@ -1,70 +1,63 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    version = "v1.1.0",
+    commit = vim.fn.has("nvim-0.9.0") == 0 and "057ee0f8783" or nil,
+    cmd = "Telescope",
+    version = false,
     config = function()
       local builtin = require("telescope.builtin")
-      local themes = require("telescope.themes")
+      local theme = require("telescope.themes")
       local silent = { silent = true }
 
       vim.keymap.set("n", "<leader>t", function()
-        builtin.find_files(themes.get_dropdown({ hidden = true }))
+        builtin.find_files(theme.get_dropdown({
+          find_command = { "rg", "--files", "--iglob=!.git/*", "-.", "--ignore" },
+        }))
       end, silent)
 
       vim.keymap.set("n", "<leader>f", function()
-        builtin.live_grep(themes.get_dropdown({ additional_args = { "-." } }))
+        builtin.live_grep(theme.get_dropdown({ additional_args = { "-." } }))
       end, silent)
 
       vim.keymap.set("n", ";", function()
-        builtin.buffers(themes.get_dropdown({ show_all_buffers = true }))
+        builtin.buffers(theme.get_dropdown({ sort_mru = true, ignore_current_buffer = true }))
       end, silent)
     end,
 
-    opts = function()
-      return {
-        defaults = {
-          layout_strategy = "flex",
-          scroll_strategy = "cycle",
+    opts = {
+      defaults = {
+        layout_strategy = "flex",
+        scroll_strategy = "cycle",
+      },
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
         },
-        extensions = {
-          fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case",
-          },
+      },
+      pickers = {
+        lsp_references = { theme = "dropdown" },
+        lsp_code_actions = { theme = "dropdown" },
+        lsp_definitions = { theme = "dropdown" },
+        lsp_implementations = { theme = "dropdown" },
+        buffers = {
+          previewer = false,
         },
-        pickers = {
-          lsp_references = { theme = "dropdown" },
-          lsp_code_actions = { theme = "dropdown" },
-          lsp_definitions = { theme = "dropdown" },
-          lsp_implementations = { theme = "dropdown" },
-          buffers = {
-            sort_lastused = true,
-            previewer = false,
-          },
-          find_files = {
-            disable_devicons = true,
-          },
-          file_browser = {
-            disable_devicons = true,
-          },
-          live_grep = {
-            disable_devicons = true,
-          },
-        },
-        file_ignore_patterns = {
-          "dist/.*",
-          "%.git/.*",
-          "%.vim/.*",
-          "node_modules/.*",
-          "%.idea/.*",
-          "%.vscode/.*",
-          "%.history/.*",
-        },
-      }
-    end,
+      },
+      file_ignore_patterns = {
+        "dist/.*",
+        "%.git/.*",
+        "%.vim/.*",
+        "node_modules/.*",
+        "%.idea/.*",
+        "%.vscode/.*",
+        "%.history/.*",
+      },
+    },
     dependencies = {
+      "nvim-tree/nvim-web-devicons",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-telescope/telescope-fzf-native.nvim",
