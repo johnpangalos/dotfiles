@@ -1,9 +1,9 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    commit = vim.fn.has("nvim-0.9.0") == 0 and "057ee0f8783" or nil,
     cmd = "Telescope",
     version = false,
+    branch = "master",
     config = function()
       local builtin = require("telescope.builtin")
       local theme = require("telescope.themes")
@@ -20,7 +20,7 @@ return {
       end, silent)
 
       vim.keymap.set("n", ";", function()
-        builtin.buffers(theme.get_dropdown({ sort_mru = true, ignore_current_buffer = true }))
+        builtin.buffers(theme.get_dropdown({ preview = false, ignore_current_buffer = true, sort_mru = true }))
       end, silent)
     end,
 
@@ -42,9 +42,6 @@ return {
         lsp_code_actions = { theme = "dropdown" },
         lsp_definitions = { theme = "dropdown" },
         lsp_implementations = { theme = "dropdown" },
-        buffers = {
-          previewer = false,
-        },
       },
       file_ignore_patterns = {
         "dist/.*",
@@ -66,6 +63,8 @@ return {
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
+    version = false,
+    branch = "main",
     config = function()
       require("telescope").load_extension("fzf")
     end,
