@@ -38,18 +38,17 @@ export PATH="~/.local/share/nvim/lsp_servers/:$PATH"
 
 export PATH="$HOME/go/bin/:$PATH"
 
-[ -f "/Users/johnpangalos/.ghcup/env" ] && source "/Users/johnpangalos/.ghcup/env" # ghcup-env
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/Users/johnpangalos/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 alias ls="exa"
 
 # bun completions
-[ -s "/Users/johnpangalos/.bun/_bun" ] && source "/Users/johnpangalos/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 

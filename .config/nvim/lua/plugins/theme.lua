@@ -4,6 +4,7 @@ return {
     name = "catppuccin",
     opts = function()
       return {
+        transparent_background = true,
         color_overrides = {
           latte = {},
           frappe = {},
@@ -19,12 +20,12 @@ return {
     config = function()
       local auto_dark_mode = require("auto-dark-mode")
       local set_dark_mode = function()
-        vim.api.nvim_set_option("background", "dark")
+        -- vim.api.nvim_set_option("background", "dark")
         vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
         vim.cmd("colorscheme catppuccin")
       end
       local set_light_mode = function()
-        vim.api.nvim_set_option("background", "light")
+        -- vim.api.nvim_set_option("background", "light")
         vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
         vim.cmd("colorscheme catppuccin")
       end

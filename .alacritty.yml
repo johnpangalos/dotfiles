@@ -1,15 +1,14 @@
 # https://arslan.io/2021/02/15/automatic-dark-mode-for-terminal-applications/
-env:
-  TERM: alacritty
 import:
   - ~/.dotfiles/colors.yml
+
+window:
+  opacity: 0.9
 
 font:
   size: 15.0
   normal:
-    family: Dank Mono
-  bold:
-    style: Bold
+    family: DankMono Nerd Font
 
 key_bindings:
   - { key: F, mods: Alt, chars: "\x1bf" }
@@ -18,4 +17,3 @@ key_bindings:
   - { key: D, mods: Alt, chars: "\x1bd" }
 
 live_config_reload: true
-

@@ -177,7 +177,6 @@ return {
         "gopls",
         "json-lsp",
         "lua-language-server",
-        "prettierd",
         "shfmt",
         "typescript-language-server",
       },
