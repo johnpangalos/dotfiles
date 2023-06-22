@@ -1,6 +1,15 @@
 export LANG=en_US.UTF-8
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(~/bin/rtx activate zsh)"
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 autoload -Uz compinit
 compinit
@@ -18,9 +27,6 @@ fi
 
     # zsh-users/zsh-autosuggestions \
 source ~/.config/zr.zsh
-
-# Setup fnm https://github.com/Schniz/fnm
- eval "$(fnm env)"
 
 export EDITOR="nvim"
 export BROWSER=none
@@ -44,7 +50,6 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-
 alias ls="exa"
 
 # bun completions
@@ -57,3 +62,37 @@ export LDFLAGS="$LDFLAGS -L$(brew --prefix llvm@13)/lib"
 export CPPFLAGS="$CPPFLAGS -I$(brew --prefix llvm@13)/include"
 
 alias config="(cd ~/.dotfiles && vim)"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# if command -v asdf &> /dev/null; then
+#   source /opt/homebrew/opt/asdf/libexec/asdf.sh
+# fi
+
+if command -v gcloud &> /dev/null; then
+  source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+  source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+fi
+export PATH="${PATH}:${HOME}/.krew/bin"
+
+alias pip="pip3"
+alias python="python3"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+alias asdf="rtx"
+
+jwtd() {
+    if [[ -x $(command -v jq) ]]; then
+         jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
+         echo "Signature: $(echo "${1}" | awk -F'.' '{print $3}')"
+    fi
+}
+
+
