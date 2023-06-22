@@ -12,16 +12,37 @@ return {
 
       vim.keymap.set("n", "<leader>t", function()
         builtin.find_files(theme.get_dropdown({
-          find_command = { "rg", "--files", "--iglob=!.git/*", "-.", "--ignore" },
+          find_command = { "rg", "--files", "--glob=!.git", "-.", "--ignore" },
         }))
       end, silent)
 
       vim.keymap.set("n", "<leader>f", function()
-        builtin.live_grep(theme.get_dropdown({ additional_args = { "-." } }))
+        builtin.live_grep(theme.get_dropdown({
+          additional_args = {
+            "--glob",
+            "!.git",
+            "--type-add",
+            "lockfiles:*-lock.yaml",
+            "--type-add",
+            "lockfiles:Cargo.lock",
+            "--type-not",
+            "lockfiles",
+            "-.",
+          },
+        }))
+        -- rg --type-add 'lockfiles:*-lock.yaml' --type-not lockfiles esbuild
+      end, silent)
+
+      vim.keymap.set("n", "<leader>s", function()
+        builtin.lsp_document_symbols(theme.get_ivy())
       end, silent)
 
       vim.keymap.set("n", ";", function()
-        builtin.buffers(theme.get_dropdown({ preview = false, ignore_current_buffer = true, sort_mru = true }))
+        builtin.buffers(theme.get_dropdown({ cwd_only = true, ignore_current_buffer = true, sort_mru = true }))
+      end, silent)
+
+      vim.keymap.set("n", "gr", function()
+        builtin.lsp_references(theme.get_ivy())
       end, silent)
     end,
 

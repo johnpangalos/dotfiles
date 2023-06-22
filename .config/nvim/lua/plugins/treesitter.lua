@@ -28,6 +28,7 @@ return {
         "python",
         "query",
         "regex",
+        "scala",
         "tsx",
         "typescript",
         "vim",

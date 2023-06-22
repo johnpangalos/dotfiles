@@ -21,11 +21,13 @@ return {
       local auto_dark_mode = require("auto-dark-mode")
       local set_dark_mode = function()
         -- vim.api.nvim_set_option("background", "dark")
+        vim.o.termguicolors = true
         vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
         vim.cmd("colorscheme catppuccin")
       end
       local set_light_mode = function()
         -- vim.api.nvim_set_option("background", "light")
+        vim.o.termguicolors = true
         vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
         vim.cmd("colorscheme catppuccin")
       end
