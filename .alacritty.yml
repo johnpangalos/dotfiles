@@ -2,9 +2,6 @@
 import:
   - ~/.dotfiles/colors.yml
 
-window:
-  opacity: 0.9
-
 font:
   size: 15.0
   normal:
