@@ -1,11 +1,20 @@
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  lazy = true,
   version = false,
+  keys = {
+    {
+      "<C-n>",
+      function()
+        local api = require("nvim-tree.api")
+        api.tree.toggle()
+      end,
+    },
+  },
   opts = function()
     local api = require("nvim-tree.api")
     local silent = { silent = true }
-    vim.keymap.set("n", "<C-n>", api.tree.toggle, silent)
     vim.keymap.set("n", "<leader>n", api.tree.focus, silent)
 
     vim.api.nvim_create_autocmd("BufEnter", {
@@ -27,26 +36,6 @@ return {
       },
       renderer = {
         group_empty = true,
-        -- icons = {
-        --   show = {
-        --     file = false,
-        --     folder = true,
-        --     folder_arrow = true,
-        --     git = false,
-        --   },
-        --   glyphs = {
-        --     folder = {
-        --       arrow_open = "-",
-        --       arrow_closed = ">",
-        --       default = "",
-        --       open = "",
-        --       empty = "",
-        --       empty_open = "",
-        --       symlink = "",
-        --       symlink_open = "",
-        --     },
-        --   },
-        -- },
       },
       actions = {
         open_file = {

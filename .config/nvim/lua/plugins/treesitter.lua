@@ -3,6 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
+    lazy = true,
     -- event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -15,7 +16,6 @@ return {
       indent = { enable = true },
       ensure_installed = {
         "bash",
-        "c",
         "go",
         "html",
         "javascript",
@@ -25,13 +25,11 @@ return {
         "luap",
         "markdown",
         "markdown_inline",
-        "python",
         "query",
         "regex",
         "scala",
         "tsx",
         "typescript",
-        "vim",
         "vimdoc",
         "yaml",
       },

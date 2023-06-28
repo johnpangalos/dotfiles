@@ -1,5 +1,8 @@
 return {
-  "editorconfig/editorconfig-vim",
+  {
+    "editorconfig/editorconfig-vim",
+    lazy = true,
+  },
 
   {
     "numToStr/Comment.nvim",

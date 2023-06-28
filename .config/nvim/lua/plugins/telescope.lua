@@ -1,51 +1,71 @@
 return {
   {
-    lazy = false,
+    lazy = true,
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    version = false,
+    -- Pin to this commit as this works with my buffers command
+    -- Commit is from May 25, 2023
+    -- Link: https://github.com/nvim-telescope/telescope.nvim/commit/6d3fbffe426794296a77bb0b37b6ae0f4f14f807
+    -- TODO: Investigate why this doesn't work in underlying code
+    commit = "6d3fbffe426794296a77bb0b37b6ae0f4f14f807",
     branch = "master",
-    config = function()
-      local builtin = require("telescope.builtin")
-      local theme = require("telescope.themes")
-      local silent = { silent = true }
-
-      vim.keymap.set("n", "<leader>t", function()
-        builtin.find_files(theme.get_dropdown({
-          find_command = { "rg", "--files", "--glob=!.git", "-.", "--ignore" },
-        }))
-      end, silent)
-
-      vim.keymap.set("n", "<leader>f", function()
-        builtin.live_grep(theme.get_dropdown({
-          additional_args = {
-            "--glob",
-            "!.git",
-            "--type-add",
-            "lockfiles:*-lock.yaml",
-            "--type-add",
-            "lockfiles:Cargo.lock",
-            "--type-not",
-            "lockfiles",
-            "-.",
-          },
-        }))
-        -- rg --type-add 'lockfiles:*-lock.yaml' --type-not lockfiles esbuild
-      end, silent)
-
-      vim.keymap.set("n", "<leader>s", function()
-        builtin.lsp_document_symbols(theme.get_ivy())
-      end, silent)
-
-      vim.keymap.set("n", ";", function()
-        builtin.buffers(theme.get_dropdown({ cwd_only = true, ignore_current_buffer = true, sort_mru = true }))
-      end, silent)
-
-      vim.keymap.set("n", "gr", function()
-        builtin.lsp_references(theme.get_ivy())
-      end, silent)
-    end,
-
+    version = false,
+    keys = {
+      {
+        "<leader>t",
+        function()
+          local builtin = require("telescope.builtin")
+          local theme = require("telescope.themes")
+          builtin.find_files(theme.get_dropdown({
+            find_command = { "rg", "--files", "--glob=!.git", "-.", "--ignore" },
+          }))
+        end,
+      },
+      {
+        "<leader>f",
+        function()
+          local builtin = require("telescope.builtin")
+          local theme = require("telescope.themes")
+          builtin.live_grep(theme.get_dropdown({
+            additional_args = {
+              "--glob",
+              "!.git",
+              "--type-add",
+              "lockfiles:*-lock.yaml",
+              "--type-add",
+              "lockfiles:Cargo.lock",
+              "--type-not",
+              "lockfiles",
+              "-.",
+            },
+          }))
+        end,
+      },
+      {
+        "<leader>s",
+        function()
+          local builtin = require("telescope.builtin")
+          local theme = require("telescope.themes")
+          builtin.lsp_document_symbols(theme.get_ivy())
+        end,
+      },
+      {
+        ";",
+        function()
+          local builtin = require("telescope.builtin")
+          local theme = require("telescope.themes")
+          builtin.buffers(theme.get_dropdown({ preview = false, ignore_current_buffer = true, sort_mru = true }))
+        end,
+      },
+      {
+        "gr",
+        function()
+          local builtin = require("telescope.builtin")
+          local theme = require("telescope.themes")
+          builtin.lsp_references(theme.get_ivy())
+        end,
+      },
+    },
     opts = {
       defaults = {
         layout_strategy = "flex",
@@ -84,6 +104,7 @@ return {
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
+    lazy = true,
     build = "make",
     version = false,
     branch = "main",
