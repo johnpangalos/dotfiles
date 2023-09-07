@@ -30,6 +30,7 @@ return {
         "scala",
         "tsx",
         "typescript",
+        "terraform",
         "vimdoc",
         "yaml",
       },
