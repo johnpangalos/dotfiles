@@ -38,6 +38,10 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+}
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },
