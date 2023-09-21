@@ -1,3 +1,18 @@
+function lsp_get_config(server)
+  local configs = require("lspconfig.configs")
+  return rawget(configs, server)
+end
+
+function lsp_disable(server, cond)
+  local util = require("lspconfig.util")
+  local def = lsp_get_config(server)
+  def.document_config.on_new_config = util.add_hook_before(def.document_config.on_new_config, function(config, root_dir)
+    if cond(root_dir, config) then
+      config.enabled = false
+    end
+  end)
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -157,13 +172,13 @@ return {
         mlsp.setup_handlers({ setup })
       end
 
-      -- if Util.lsp_get_config("denols") and Util.lsp_get_config("tsserver") then
-      --   local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-      --   Util.lsp_disable("tsserver", is_deno)
-      --   Util.lsp_disable("denols", function(root_dir)
-      --     return not is_deno(root_dir)
-      --   end)
-      -- end
+      if lsp_get_config("denols") and lsp_get_config("tsserver") then
+        local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+        lsp_disable("tsserver", is_deno)
+        lsp_disable("denols", function(root_dir)
+          return not is_deno(root_dir)
+        end)
+      end
     end,
   },
 
