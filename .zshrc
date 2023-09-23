@@ -2,30 +2,36 @@ export LANG=en_US.UTF-8
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(~/bin/rtx activate zsh)"
+eval "$(starship init zsh)"
 
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-  autoload -Uz compinit
-  compinit
 fi
 
 autoload -Uz compinit
 compinit
+
 # Generate new ~/.config/zr.zsh if it does not exist or if ~/.zshrc has been changed
 if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
   zr \
     ohmyzsh/ohmyzsh.git/lib/git.zsh \
-    frmendes/geometry \
-    junegunn/fzf.git/shell/key-bindings.zsh \
+    ohmyzsh/ohmyzsh.git/plugins/docker/docker.plugin.zsh \
+    ohmyzsh/ohmyzsh.git/plugins/tmux/tmux.plugin.zsh \
     ohmyzsh/ohmyzsh.git/plugins/git/git.plugin.zsh \
+    ohmyzsh/ohmyzsh.git/plugins/kubectl/kubectl.plugin.zsh \
+    junegunn/fzf.git/shell/key-bindings.zsh \
     zsh-users/zsh-syntax-highlighting \
     zsh-users/zsh-completions \
+    zdharma/fast-syntax-highlighting \
+    ael-code/zsh-colored-man-pages \
+    momo-lab/zsh-abbrev-alias \
+    zpm-zsh/ssh \
+    mroth/evalcache \
     > ~/.config/zr.zsh
 fi
 
-    # zsh-users/zsh-autosuggestions \
+# zsh-users/zsh-autosuggestions \
 source ~/.config/zr.zsh
 
 export EDITOR="nvim"
@@ -50,7 +56,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-alias ls="exa"
+alias ls="eza"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -69,10 +75,6 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-# if command -v asdf &> /dev/null; then
-#   source /opt/homebrew/opt/asdf/libexec/asdf.sh
-# fi
 
 if command -v gcloud &> /dev/null; then
   source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
@@ -95,4 +97,7 @@ jwtd() {
     fi
 }
 
+alias gfixup="git commit -v --fixup HEAD && git rebase -i --stat --autosquash --autostash HEAD~2"
+alias gsquash="git commit -v --squash HEAD && git rebase -i --stat --autosquash --autostash HEAD~2"
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 
