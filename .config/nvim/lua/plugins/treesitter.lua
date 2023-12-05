@@ -25,6 +25,7 @@ return {
         "luap",
         "markdown",
         "markdown_inline",
+        "proto",
         "query",
         "regex",
         "scala",
