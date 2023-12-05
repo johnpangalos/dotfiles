@@ -2,15 +2,14 @@ export LANG=en_US.UTF-8
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(~/bin/rtx activate zsh)"
-eval "$(starship init zsh)"
 
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
 
-autoload -Uz compinit
-compinit
+  autoload -Uz compinit
+  compinit
+fi
 
 # Generate new ~/.config/zr.zsh if it does not exist or if ~/.zshrc has been changed
 if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
@@ -22,12 +21,7 @@ if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
     ohmyzsh/ohmyzsh.git/plugins/kubectl/kubectl.plugin.zsh \
     junegunn/fzf.git/shell/key-bindings.zsh \
     zsh-users/zsh-syntax-highlighting \
-    zsh-users/zsh-completions \
-    zdharma/fast-syntax-highlighting \
-    ael-code/zsh-colored-man-pages \
-    momo-lab/zsh-abbrev-alias \
-    zpm-zsh/ssh \
-    mroth/evalcache \
+    geometry-zsh/geometry \
     > ~/.config/zr.zsh
 fi
 
@@ -97,7 +91,10 @@ jwtd() {
     fi
 }
 
-alias gfixup="git commit -v --fixup HEAD && git rebase -i --stat --autosquash --autostash HEAD~2"
-alias gsquash="git commit -v --squash HEAD && git rebase -i --stat --autosquash --autostash HEAD~2"
+alias gfixup="git commit -v --fixup HEAD && GIT_SEQUENCE_EDITOR=touch git rebase -i --stat --autosquash --autostash HEAD~2"
+alias gsquash="git commit -v --squash HEAD && GIT_SEQUENCE_EDITOR=touch git rebase -i --stat --autosquash --autostash HEAD~2"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 
+export GRAALVM_HOME=$HOME/Development/graalvm/Contents/Home/
+
+alias sed="gsed"
