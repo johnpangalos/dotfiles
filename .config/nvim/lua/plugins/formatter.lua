@@ -26,6 +26,7 @@ return {
         javascript = { "prettier", "trim_whitespace" },
         javascriptreact = { "prettier", "trim_whitespace" },
         typescript = { "prettier", "trim_newlines", "trim_whitespace" },
+        html = { "prettier", "trim_newlines", "trim_whitespace" },
         typescriptreact = { "prettier", "trim_newlines", "trim_whitespace" },
         go = { "gofmt", "trim_newlines", "trim_whitespace" },
         markdown = { "prettier", "trim_newlines", "trim_whitespace" },

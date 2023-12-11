@@ -1,5 +1,8 @@
 return {
   {
+    "towolf/vim-helm",
+  },
+  {
     "NoahTheDuke/vim-just",
   },
   {

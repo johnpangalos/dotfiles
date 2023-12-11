@@ -1,2 +1,7 @@
-kubectl system
-golang 1.19
+kubectl             system
+golang              1.19
+pnpm                latest
+node                20
+# oci latest
+kustomize           4.4.1 # Use same as in ArgoCD: https://github.com/argoproj/argo-cd/blob/v2.3.2/hack/tool-versions.sh#L17
+asdf-plugin-manager 1.1.1
