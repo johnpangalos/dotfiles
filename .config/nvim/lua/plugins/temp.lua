@@ -1,15 +1,21 @@
 return {
   {
-    "editorconfig/editorconfig-vim",
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    opts = {
+      enable_autocmd = false,
+    },
   },
-
   {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      })
-    end,
+    "echasnovski/mini.comment",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+    },
   },
 
   {
@@ -19,16 +25,4 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
-  -- {
-  --   "folke/neodev.nvim",
-  --   opts = {
-  --     debug = true,
-  --     experimental = {
-  --       pathStrict = true,
-  --     },
-  --     library = {
-  --       runtime = "~/projects/neovim/runtime/",
-  --     },
-  --   },
-  -- },
 }

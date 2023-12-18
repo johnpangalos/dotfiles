@@ -1,7 +1,7 @@
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  lazy = true,
+  cmd = "NvimTreeOpen",
   version = false,
   keys = {
     {

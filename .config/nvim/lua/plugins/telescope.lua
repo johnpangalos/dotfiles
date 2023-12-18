@@ -3,12 +3,6 @@ return {
     lazy = true,
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    -- Pin to this commit as this works with my buffers command
-    -- Commit is from May 25, 2023
-    -- Link: https://github.com/nvim-telescope/telescope.nvim/commit/6d3fbffe426794296a77bb0b37b6ae0f4f14f807
-    -- TODO: Investigate why this doesn't work in underlying code
-    commit = "6d3fbffe426794296a77bb0b37b6ae0f4f14f807",
-    branch = "master",
     version = false,
     keys = {
       {

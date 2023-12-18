@@ -50,9 +50,9 @@ require("lazy").setup({
     notify = false,
   },
   performance = {
-    -- cache = {
-    --   enabled = true,
-    -- },
+    cache = {
+      enabled = true,
+    },
     rtp = {
       disabled_plugins = {
         "gzip",

@@ -1,12 +1,15 @@
 return {
   {
     "towolf/vim-helm",
+    ft = "helm",
   },
   {
     "NoahTheDuke/vim-just",
+    ft = "just",
   },
   {
     "IndianBoy42/tree-sitter-just",
+    ft = "just",
   },
   {
     "stevearc/dressing.nvim",
@@ -27,6 +30,7 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
 
     opts = function()
       local todo = require("todo-comments")
@@ -102,13 +106,39 @@ return {
       end,
     },
   },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    opts = {
+      indent = {
+        char = "│",
+        tab_char = "│",
+      },
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+      },
+    },
+    main = "ibl",
+  },
 
   -- active indent guide and indent text objects
   {
     "echasnovski/mini.indentscope",
     version = false, -- wait till new 0.7.0 release to put it back on semver
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     opts = {
       -- symbol = "▏",
       symbol = "│",

@@ -1,4 +1,4 @@
-local cmd = vim.cmd
+  local cmd = vim.cmd
 local o_s = vim.o
 local map_key = vim.api.nvim_set_keymap
 

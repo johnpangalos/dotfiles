@@ -63,11 +63,6 @@ return {
     },
     ---@param opts PluginLspOpts
     config = function(_, opts)
-      -- local Util = require("lazyvim.util
-      -- setup autoformat
-      -- require("lazyvim.plugins.lsp.format").autoformat = opts.autoformat
-      -- setup formatting and keymaps
-
       local on_attach = function(_, bufnr)
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -217,6 +212,7 @@ return {
   },
   {
     "folke/trouble.nvim",
+    event = { "VeryLazy" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
       local trouble = require("trouble")

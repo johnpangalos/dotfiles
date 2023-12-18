@@ -3,11 +3,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
-    lazy = true,
-    -- event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
+      -- "JoosepAlviste/nvim-ts-context-commentstring",
     },
     ---@type TSConfig
     opts = {
@@ -15,12 +14,15 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {
+        "c",
+        "vim",
+        "vimdoc",
+        "query",
         "bash",
         "go",
         "html",
         "javascript",
         "json",
-        "lua",
         "luadoc",
         "luap",
         "markdown",
@@ -32,7 +34,6 @@ return {
         "tsx",
         "typescript",
         "terraform",
-        "vimdoc",
         "yaml",
       },
       incremental_selection = {

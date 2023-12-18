@@ -17,6 +17,7 @@ return {
 
   {
     "f-person/auto-dark-mode.nvim",
+    event = "VeryLazy",
     config = function()
       local auto_dark_mode = require("auto-dark-mode")
       local set_dark_mode = function()
