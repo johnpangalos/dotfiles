@@ -1,7 +1,7 @@
 export LANG=en_US.UTF-8
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(~/bin/rtx activate zsh)"
+eval "$(/opt/homebrew/bin/rtx activate zsh)"
 
 if type brew &>/dev/null
 then
@@ -16,7 +16,6 @@ if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
   zr \
     ohmyzsh/ohmyzsh.git/lib/git.zsh \
     ohmyzsh/ohmyzsh.git/plugins/docker/docker.plugin.zsh \
-    ohmyzsh/ohmyzsh.git/plugins/tmux/tmux.plugin.zsh \
     ohmyzsh/ohmyzsh.git/plugins/git/git.plugin.zsh \
     ohmyzsh/ohmyzsh.git/plugins/kubectl/kubectl.plugin.zsh \
     junegunn/fzf.git/shell/key-bindings.zsh \
@@ -25,7 +24,6 @@ if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
     > ~/.config/zr.zsh
 fi
 
-# zsh-users/zsh-autosuggestions \
 source ~/.config/zr.zsh
 
 export EDITOR="nvim"
@@ -42,15 +40,13 @@ fi
 
 export PATH="~/.local/share/nvim/lsp_servers/:$PATH"
 
-export PATH="$HOME/go/bin/:$PATH"
-
-
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+bindkey -v
+
 alias ls="eza"
+alias asdf="rtx"
+alias sed="gsed"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -58,6 +54,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH="$(brew --prefix llvm@13)/bin:$HOME/.bun-tools/zig:$PATH"
+
 export LDFLAGS="$LDFLAGS -L$(brew --prefix llvm@13)/lib"
 export CPPFLAGS="$CPPFLAGS -I$(brew --prefix llvm@13)/include"
 
@@ -74,6 +71,7 @@ if command -v gcloud &> /dev/null; then
   source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
   source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 fi
+
 export PATH="${PATH}:${HOME}/.krew/bin"
 
 alias pip="pip3"
@@ -82,7 +80,7 @@ export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-alias asdf="rtx"
+
 
 jwtd() {
     if [[ -x $(command -v jq) ]]; then
@@ -93,8 +91,7 @@ jwtd() {
 
 alias gfixup="git commit -v --fixup HEAD && GIT_SEQUENCE_EDITOR=touch git rebase -i --stat --autosquash --autostash HEAD~2"
 alias gsquash="git commit -v --squash HEAD && GIT_SEQUENCE_EDITOR=touch git rebase -i --stat --autosquash --autostash HEAD~2"
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 export GRAALVM_HOME=$HOME/Development/graalvm/Contents/Home/
 
-alias sed="gsed"
