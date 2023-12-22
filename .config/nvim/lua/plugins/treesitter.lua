@@ -6,11 +6,10 @@ return {
     event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      -- "JoosepAlviste/nvim-ts-context-commentstring",
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     ---@type TSConfig
     opts = {
-      parser_install_dir = "$HOME/.local/share/treesitter",
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {
@@ -26,16 +25,19 @@ return {
         "json",
         "luadoc",
         "luap",
+        "make",
         "markdown",
         "markdown_inline",
         "proto",
         "query",
         "regex",
+        "rust",
         "scala",
         "tsx",
         "typescript",
         "terraform",
         "yaml",
+        "zig",
       },
       incremental_selection = {
         enable = true,

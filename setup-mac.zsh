@@ -27,7 +27,7 @@ if ! (( $+commands[brew] )); then
     bitwarden \
     docker \
     tunnelblick \
-    alacritty
+    wezterm
 else
   echo "Brew found skipping install."
 fi

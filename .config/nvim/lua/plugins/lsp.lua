@@ -21,9 +21,10 @@ return {
       { "folke/neodev.nvim", opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp",
     },
     ---@class PluginLspOpts
+    --
     opts = {
       -- options for vim.diagnostic.config()
       diagnostics = {
@@ -121,7 +122,7 @@ return {
         "force",
         {},
         vim.lsp.protocol.make_client_capabilities(),
-        require("cmp_nvim_lsp").default_capabilities(),
+        -- require("cmp_nvim_lsp").default_capabilities(),
         opts.capabilities or {}
       )
 
@@ -210,6 +211,7 @@ return {
       end
     end,
   },
+
   {
     "folke/trouble.nvim",
     event = { "VeryLazy" },

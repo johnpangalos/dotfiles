@@ -72,6 +72,13 @@ if command -v gcloud &> /dev/null; then
   source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 fi
 
+if command -v wezterm &> /dev/null; then
+  mkdir -p $HOME/.config/wezterm
+  wezterm shell-completion --shell zsh > $HOME/.config/wezterm/completions.zsh
+  source "$HOME/.config/wezterm/completions.zsh"
+  alias wez="wezterm cli"
+fi
+
 export PATH="${PATH}:${HOME}/.krew/bin"
 
 alias pip="pip3"
