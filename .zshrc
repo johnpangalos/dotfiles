@@ -1,7 +1,7 @@
 export LANG=en_US.UTF-8
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(/opt/homebrew/bin/rtx activate zsh)"
+eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 if type brew &>/dev/null
 then
@@ -45,7 +45,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 bindkey -v
 
 alias ls="eza"
-alias asdf="rtx"
+alias asdf="mise"
 alias sed="gsed"
 
 # bun completions
