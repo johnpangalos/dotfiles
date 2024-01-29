@@ -23,8 +23,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
       -- "hrsh7th/cmp-nvim-lsp",
     },
-    ---@class PluginLspOpts
-    --
     opts = {
       -- options for vim.diagnostic.config()
       diagnostics = {
@@ -150,7 +148,7 @@ return {
         all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
       end
 
-      local ensure_installed = {} ---@type string[]
+      local ensure_installed = {}
       for server, server_opts in pairs(servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
@@ -192,7 +190,6 @@ return {
         "typescript-language-server",
       },
     },
-    ---@param opts MasonSettings | {ensure_installed: string[]}
     config = function(_, opts)
       require("mason").setup(opts)
       local mr = require("mason-registry")
@@ -216,25 +213,55 @@ return {
     "folke/trouble.nvim",
     event = { "VeryLazy" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = function()
-      local trouble = require("trouble")
-      local silent = { silent = true, noremap = true }
-      vim.keymap.set("n", "<leader>xx", trouble.toggle, silent)
-      vim.keymap.set("n", "<leader>xw", function()
-        trouble.toggle({ mode = "workspace_diagnostics" })
-      end, silent)
-      vim.keymap.set("n", "<leader>xd", function()
-        trouble.toggle({ mode = "document_diagnostics" })
-      end, silent)
-      vim.keymap.set("n", "<leader>xl", function()
-        trouble.toggle({ mode = "loclist" })
-      end, silent)
-      vim.keymap.set("n", "<leader>xq", function()
-        trouble.toggle({ mode = "quickfix" })
-      end, silent)
-      vim.keymap.set("n", "gR", function()
-        trouble.toggle({ mode = "lsp_references" })
-      end, silent)
-    end,
+    keys = {
+      {
+        "<leader>xx",
+        function()
+          local trouble = require("trouble")
+          trouble.toggle()
+        end,
+        desc = "Toggle trouble",
+      },
+      {
+        "<leader>xw",
+        function()
+          local trouble = require("trouble")
+          trouble.toggle({ mode = "workspace_diagnostics" })
+        end,
+        desc = "Workspace diagnostics",
+      },
+      {
+        "<leader>xd",
+        function()
+          local trouble = require("trouble")
+          trouble.toggle({ mode = "document_diagnostics" })
+        end,
+        desc = "Document diagnostics",
+      },
+      {
+        "<leader>xl",
+        function()
+          local trouble = require("trouble")
+          trouble.toggle({ mode = "loclist" })
+        end,
+        desc = "Trouble local list",
+      },
+      {
+        "<leader>xx",
+        function()
+          local trouble = require("trouble")
+          trouble.toggle({ mode = "quickfix" })
+        end,
+        desc = "Trouble quickfix",
+      },
+      {
+        "<leader>xx",
+        function()
+          local trouble = require("trouble")
+          trouble.toggle({ mode = "lsp_references" })
+        end,
+        desc = "Lsp References",
+      },
+    },
   },
 }

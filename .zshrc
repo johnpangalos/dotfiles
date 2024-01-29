@@ -11,20 +11,7 @@ then
   compinit
 fi
 
-# Generate new ~/.config/zr.zsh if it does not exist or if ~/.zshrc has been changed
-if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
-  zr \
-    ohmyzsh/ohmyzsh.git/lib/git.zsh \
-    ohmyzsh/ohmyzsh.git/plugins/docker/docker.plugin.zsh \
-    ohmyzsh/ohmyzsh.git/plugins/git/git.plugin.zsh \
-    ohmyzsh/ohmyzsh.git/plugins/kubectl/kubectl.plugin.zsh \
-    junegunn/fzf.git/shell/key-bindings.zsh \
-    zsh-users/zsh-syntax-highlighting \
-    geometry-zsh/geometry \
-    > ~/.config/zr.zsh
-fi
-
-source ~/.config/zr.zsh
+eval "$(sheldon source)"
 
 export EDITOR="nvim"
 export BROWSER=none

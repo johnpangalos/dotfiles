@@ -17,8 +17,7 @@ if ! (( $+commands[brew] )); then
     fnm \
     git \
     gh \
-    dockutil \
-    tmux
+    dockutil
 
   brew install --cask firefox \
     discord \
@@ -72,8 +71,33 @@ case $SHOULD_ADD_SSH_KEY in
     ;;
 esac
 
+# Reinstall dark mode binary
+vared -p 'Would you like to (re)install dark mode binary?: (Y/n) ' -c SHOULD_INSTALL_BINARY 
+(
+  case $SHOULD_INSTALL_BINARY in
+    $~YES)
+      echo "Installing dark mode notify binary"
+      sudo mkdir -p /usr/local/bin/
+      sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
+
+      UID=$(id -u)
+      if launchctl print gui/$UID/ke.bou.dark-mode-notify > /dev/null 2>&1 ; then
+        launchctl bootout gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
+      fi
+      launchctl bootstrap gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
+      launchctl kickstart -k gui/$UID/ke.bou.dark-mode-notify
+      echo "Dark mode binary installed"
+      ;;
+    $~NO)
+      echo "Skipping dark mode binary."
+      ;;
+    *)
+      echo "Invalid argument $SHOULD_INSTALL_BINARY, skipping install."
+      ;;
+  esac
+)
+
 # Reset dotfiles
-#
 # Remove old dotfiles and replace them with symlinks
 vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET 
 (
@@ -92,9 +116,9 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
 
       to_copy=(
         ".config/nvim"
+        ".config/sheldon"
         ".zshrc"
-        ".tmux.conf"
-        ".alacritty.yml"
+        ".wezterm.lua"
         ".change_background.sh"
         ".tool-versions"
         "Library/LaunchAgents/ke.bou.dark-mode-notify.plist"
@@ -105,16 +129,6 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
         ln -s $HOME/.dotfiles/${i} $HOME/${i}
       done
 
-      echo "Installing dark mode notify binary"
-      sudo mkdir -p /usr/local/bin/
-      sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
-
-      UID=$(id -u)
-      if launchctl print gui/$UID/ke.bou.dark-mode-notify > /dev/null 2>&1 ; then
-        launchctl bootout gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
-      fi
-      launchctl bootstrap gui/$UID ~/Library/LaunchAgents/ke.bou.dark-mode-notify.plist
-      launchctl kickstart -k gui/$UID/ke.bou.dark-mode-notify
       echo "Dotfiles reset."
       ;;
     $~NO)

@@ -10,6 +10,7 @@ return {
         local api = require("nvim-tree.api")
         api.tree.toggle()
       end,
+      desc = "Toggle file tree",
     },
   },
   opts = function()

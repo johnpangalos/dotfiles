@@ -14,6 +14,7 @@ return {
             find_command = { "rg", "--files", "--glob=!.git", "-.", "--ignore" },
           }))
         end,
+        desc = "Search files",
       },
       {
         "<leader>f",
@@ -34,6 +35,7 @@ return {
             },
           }))
         end,
+        desc = "Find in files",
       },
       {
         "<leader>s",
@@ -42,6 +44,7 @@ return {
           local theme = require("telescope.themes")
           builtin.lsp_document_symbols(theme.get_ivy())
         end,
+        desc = "Search symbol",
       },
       {
         ";",
@@ -50,6 +53,7 @@ return {
           local theme = require("telescope.themes")
           builtin.buffers(theme.get_dropdown({ preview = false, ignore_current_buffer = true, sort_mru = true }))
         end,
+        desc = "Search buffers",
       },
       {
         "gr",
@@ -58,6 +62,7 @@ return {
           local theme = require("telescope.themes")
           builtin.lsp_references(theme.get_ivy())
         end,
+        desc = "Get references",
       },
     },
     opts = {
