@@ -12,7 +12,7 @@ if ! (( $+commands[brew] )); then
 
   brew install neovim \
     fzf \
-    exa \
+    eza \
     go \
     fnm \
     git \
@@ -162,10 +162,10 @@ case $SHOULD_RESET_DOCK in
 
     defaults write com.apple.dock persistent-apps -array \
       "$(dock_item /Applications/Firefox.app)" \
-      "$(dock_item /Applications/Alacritty.app)" \
+      "$(dock_item /Applications/WezTerm.app)" \
       "$(dock_item /Applications/Discord.app)" \
       "$(dock_item /Applications/Bitwarden.app)" \
-      "$(dock_item /System/Applications/System\ Preferences.app)" 
+      "$(dock_item /System/Applications/System\ Settings.app)" 
 
     killall Dock
     ;;
