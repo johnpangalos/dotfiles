@@ -88,4 +88,3 @@ alias gsquash="git commit -v --squash HEAD && GIT_SEQUENCE_EDITOR=touch git reba
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 export GRAALVM_HOME=$HOME/Development/graalvm/Contents/Home/
-

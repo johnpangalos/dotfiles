@@ -33,3 +33,6 @@ remote = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/g
 
 [plugins.kubectl]
 remote = "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/kubectl/kubectl.plugin.zsh"
+
+[plugins.fzf-key-bindings]
+remote = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
