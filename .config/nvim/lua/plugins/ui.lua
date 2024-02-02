@@ -40,55 +40,6 @@ return {
       return {}
     end,
   },
-  -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     routes = {
-  --       {
-  --         filter = {
-  --           event = "msg_show",
-  --           kind = "",
-  --           find = "written",
-  --         },
-  --         opts = { skip = true },
-  --       },
-  --       {
-  --         filter = {
-  --           event = "msg_history_show",
-  --           kind = "",
-  --           find = "written",
-  --         },
-  --         opts = { skip = true },
-  --       },
-  --     },
-  --     lsp = {
-  --       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-  --       override = {
-  --         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-  --         ["vim.lsp.util.stylize_markdown"] = true,
-  --         ["cmp.entry.get_documentation"] = true,
-  --       },
-  --     },
-  --     -- you can enable a preset for easier configuration
-  --     presets = {
-  --       bottom_search = true, -- use a classic bottom cmdline for search
-  --       command_palette = true, -- position the cmdline and popupmenu together
-  --       long_message_to_split = true, -- long messages will be sent to a split
-  --       inc_rename = false, -- enables an input dialog for inc-rename.nvim
-  --       lsp_doc_border = false, -- add a border to hover docs and signature help
-  --     },
-  --     -- add any options here
-  --   },
-  --   dependencies = {
-  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --     "MunifTanjim/nui.nvim",
-  --     -- OPTIONAL:
-  --     --   `nvim-notify` is only needed, if you want to use the notification view.
-  --     --   If not available, we use `mini` as the fallback
-  --     "rcarriga/nvim-notify",
-  --   },
-  -- },
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -113,13 +64,13 @@ return {
         map("n", "[h", gs.prev_hunk, "Prev Hunk")
         map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
         map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
-        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-        map("n", "<leader>ghd", gs.diffthis, "Diff This")
-        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+        map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
+        map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
+        map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>gb", function() gs.blame_line({ full = true }) end, "Blame Line")
+        map("n", "<leader>gd", gs.diffthis, "Diff This")
+        map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff This ~")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
       end,
     },
@@ -189,5 +140,18 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
+    opts = {
+      plugins = {
+        registers = true,
+      },
+      presets = {
+        nav = true,
+        motions = true,
+        operators = true,
+      },
+    },
   },
+  { "echasnovski/mini.pairs", version = "*" },
+  { "echasnovski/mini.surround", version = "*" },
+  { "echasnovski/mini.ai", version = "*" },
 }
