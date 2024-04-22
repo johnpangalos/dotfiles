@@ -14,7 +14,6 @@ fi
 eval "$(sheldon source)"
 
 export EDITOR="nvim"
-export BROWSER=none
 alias vim="nvim"
 
 # Setup FZF
@@ -88,3 +87,5 @@ alias gsquash="git commit -v --squash HEAD && GIT_SEQUENCE_EDITOR=touch git reba
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 export GRAALVM_HOME=$HOME/Development/graalvm/Contents/Home/
+
+alias mov-to-webm="sh $HOME/scratch/mov-to-web.sh"
