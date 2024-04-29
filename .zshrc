@@ -74,7 +74,6 @@ export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-
 jwtd() {
     if [[ -x $(command -v jq) ]]; then
          jq -R 'split(".") | .[0],.[1] | @base64d | fromjson' <<< "${1}"
