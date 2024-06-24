@@ -116,6 +116,7 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
 
       to_copy=(
         ".config/nvim"
+        ".config/helix"
         ".config/sheldon"
         ".zshrc"
         ".wezterm.lua"
