@@ -144,11 +144,6 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
 # Setup nvim
 # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-# Setup zr
-if ! (( $+commands[zr] )); then
-  cargo install zr
-fi
-
 # Reset mac dock
 vared -p 'Would you like to reset the Dock?: (Y/n) ' -c SHOULD_RESET_DOCK
 
