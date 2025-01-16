@@ -6,9 +6,9 @@ return {
     opts = {
       -- make sure mason installs the server
       servers = {
-        tsserver = {
-          enabled = false,
-        },
+        -- tsserver = {
+        --   enabled = false,
+        -- },
         vtsls = {
           -- explicitly add default filetypes, so that we can extend
           -- them in related extras
@@ -101,10 +101,6 @@ return {
         },
       },
       setup = {
-        tsserver = function()
-          -- disable tsserver
-          return true
-        end,
         vtsls = function(_, opts)
           utils.on_attach(function(client, buffer)
             client.commands["_typescript.moveToFileRefactoring"] = function(command, ctx)

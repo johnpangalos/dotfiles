@@ -22,6 +22,7 @@ return {
         formatters_by_ft = {
           sh = { "shfmt", "trim_newlines", "trim_whitespace" },
           lua = { "stylua", "trim_newlines", "trim_whitespace" },
+          css = { "prettier", "trim_whitespace" },
           javascript = { "prettier", "trim_whitespace" },
           javascriptreact = { "prettier", "trim_whitespace" },
           typescript = { "prettier", "trim_newlines", "trim_whitespace" },
