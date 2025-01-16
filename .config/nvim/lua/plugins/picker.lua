@@ -5,9 +5,9 @@ return {
     opts = {
       grep = {
         rg_glob = true,
-        rg_opts = "--glob !.git --type-add lockfiles:*-lock.yaml -n --column -"
-          .. "-color=always --smart-case "
-          .. "--type-add lockfiles:Cargo.lock --type-not lockfiles -. ",
+        rg_opts = "--glob !.git -n --column --color=always --smart-case "
+          .. "--type-add lockfiles:Cargo.lock --type-add lockfiles:*-lock.yaml "
+          .. "--type-not lockfiles -. ",
       },
     },
     keys = {
