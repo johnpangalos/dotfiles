@@ -19,12 +19,22 @@ return {
         desc = "Switch Buffer",
       },
       {
-        "<leader>t",
+        "<D-\\>",
+        "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
+        desc = "Switch Buffer",
+      },
+      {
+        "<D-p>",
         "<cmd>FzfLua files<cr>",
         desc = "Search files",
       },
       {
         "<leader>f",
+        "<cmd>FzfLua live_grep<cr>",
+        desc = "Live grep",
+      },
+      {
+        "<D-F>",
         "<cmd>FzfLua live_grep<cr>",
         desc = "Live grep",
       },

@@ -36,9 +36,6 @@ return {
       },
       window = {
         mappings = {
-          ["l"] = "open",
-          ["h"] = "close_node",
-          ["<space>"] = "none",
           ["Y"] = {
             function(state)
               local node = state.tree:get_node()
