@@ -1,7 +1,9 @@
 export LANG=en_US.UTF-8
 
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/opt/homebrew/bin/mise activate zsh)"
+eval "$(fnm env --use-on-cd --corepack-enabled --shell zsh)"
 
 if type brew &>/dev/null
 then
@@ -28,6 +30,7 @@ export PATH="~/.local/share/nvim/lsp_servers/:$PATH"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
+# Vim bindings for zsh
 bindkey -v
 
 alias ls="eza"
@@ -81,10 +84,11 @@ jwtd() {
     fi
 }
 
-alias gfixup="git commit -v --fixup HEAD && GIT_SEQUENCE_EDITOR=touch git rebase -i --stat --autosquash --autostash HEAD~2"
-alias gsquash="git commit -v --squash HEAD && GIT_SEQUENCE_EDITOR=touch git rebase -i --stat --autosquash --autostash HEAD~2"
-
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 export GRAALVM_HOME=$HOME/Development/graalvm/Contents/Home/
 
 alias mov-to-webm="sh $HOME/scratch/mov-to-web.sh"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# Created by `pipx` on 2024-10-17 07:50:15
+export PATH="$PATH:/Users/johnny/.local/bin"

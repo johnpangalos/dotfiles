@@ -29,7 +29,7 @@ return {
         window = {
           width = 0.4,
         },
-        model = "gpt-4o-2024-08-06",
+        model = "o3-mini",
       }
     end,
     keys = {
