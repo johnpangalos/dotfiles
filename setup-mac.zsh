@@ -116,13 +116,13 @@ vared -p 'Would you like to reset dotfiles?: (Y/n) ' -c SHOULD_RESET
 
       to_copy=(
         ".config/nvim"
-        ".config/helix"
         ".config/sheldon"
-        ".zshrc"
-        ".wezterm.lua"
-        ".change_background.sh"
-        ".tool-versions"
-        "Library/LaunchAgents/ke.bou.dark-mode-notify.plist"
+        ".config/ghostty"
+        # ".zshrc"
+        # ".wezterm.lua"
+        # ".change_background.sh"
+        # ".tool-versions"
+        # "Library/LaunchAgents/ke.bou.dark-mode-notify.plist"
       )
 
       for i in "${to_copy[@]}"; do

@@ -1,4 +1,5 @@
-theme = dark:catppuccin-mocha,light:catppuccin-latte
-macos-option-as-alt = true
+theme = catppuccin-mocha
 
+macos-option-as-alt = true
 cursor-invert-fg-bg = true
+keybind = shift+enter=text:\x1b\r

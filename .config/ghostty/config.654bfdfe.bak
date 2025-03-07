@@ -1,0 +1,4 @@
+theme = dark:ayu,light:ayu_light
+
+macos-option-as-alt = true
+cursor-invert-fg-bg = true
