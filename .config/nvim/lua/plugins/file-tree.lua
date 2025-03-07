@@ -51,6 +51,7 @@ return {
             desc = "Open with System Application",
           },
           ["P"] = { "toggle_preview", config = { use_float = false } },
+          ["<C-v>"] = { "open_vsplit" },
         },
       },
       default_component_configs = {
