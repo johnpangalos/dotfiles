@@ -67,3 +67,4 @@ require("lazy").setup({
 })
 
 vim.lsp.completion.enable()
+

@@ -25,12 +25,32 @@ return {
           local bufnr = args.buf
 
           -- Enable completion if supported
-          if client and client.supports_method('textDocument/completion') then
+          if client and client:supports_method('textDocument/completion') then
             vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+
+            -- Enhanced completion while typing
+            vim.api.nvim_create_autocmd('InsertCharPre', {
+              group = vim.api.nvim_create_augroup('CompletionWhileTyping', { clear = false }),
+              buffer = bufnr,
+              callback = function()
+                -- Don't trigger if completion menu is already visible or in macro
+                if vim.fn.pumvisible() == 1 or vim.fn.state('m') == 'm' then
+                  return
+                end
+
+                -- Trigger completion after any alphanumeric character or dot
+                local char = vim.v.char
+                if char:match('%w') or char == '.' then
+                  vim.schedule(function()
+                    vim.lsp.completion.get()
+                  end)
+                end
+              end
+            })
           end
 
           -- Enable formatting on save if supported
-          if client and client.supports_method('textDocument/formatting') then
+          if client and client:supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd('BufWritePre', {
               group = vim.api.nvim_create_augroup('LspFormatting', { clear = false }),
               buffer = bufnr,
@@ -45,17 +65,13 @@ return {
             vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
           end
 
-          map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
-          map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
-          map('n', '<leader>cd', vim.lsp.buf.rename, 'Rename symbol')
           map('n', '<leader>e', vim.diagnostic.open_float, 'Open diagnostic float')
           map('n', '<leader>q', vim.diagnostic.setloclist, 'Set diagnostic loclist')
-          map('i', '<C-Space>', vim.lsp.completion.get, 'Trigger completion')
         end
       })
 
       -- Enable LSP for configured servers
-      vim.lsp.enable({ 'lua_ls', 'vtsls' })
+      vim.lsp.enable({ 'lua_ls', 'vtsls', "eslint" })
     end
   }
 }
