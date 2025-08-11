@@ -22,7 +22,7 @@ vim.cmd([[syntax enable]])
 
 -- Setup lazy vim https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -68,3 +68,6 @@ require("lazy").setup({
 
 vim.lsp.completion.enable()
 
+vim.diagnostic.config({
+  virtual_lines = true
+})

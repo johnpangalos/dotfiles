@@ -19,7 +19,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       enabled = true,
-      message_template = " <summary> • <date> • <author>",
+      message_template = "      <author>, <date>",
       date_format = "%m-%d-%Y %H:%M:%S",
       virtual_text_column = 1,
     },
