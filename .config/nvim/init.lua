@@ -67,7 +67,3 @@ require("lazy").setup({
 })
 
 vim.lsp.completion.enable()
-
-vim.diagnostic.config({
-  virtual_lines = true
-})

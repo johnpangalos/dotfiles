@@ -1,3 +1,13 @@
+vim.keymap.set('t', '<C-w>w', '<C-\\><C-N><C-w>w')
+vim.keymap.set('t', '<C-w><C-w>', '<C-\\><C-N><C-w><C-w>')
+vim.keymap.set('t', '<C-w>h', '<C-\\><C-N><C-w>h')
+vim.keymap.set('t', '<C-w>j', '<C-\\><C-N><C-w>j')
+vim.keymap.set('t', '<C-w>k', '<C-\\><C-N><C-w>k')
+vim.keymap.set('t', '<C-w>l', '<C-\\><C-N><C-w>l')
+vim.keymap.set("t", "<C-`>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+vim.keymap.set("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+
 return {
   {
     "echasnovski/mini.diff",
@@ -27,6 +37,22 @@ return {
   -- Additional Snacks modules
   {
     "folke/snacks.nvim",
+    keys = {
+      {
+        "<c-`>",
+        function()
+          Snacks.terminal.toggle()
+        end,
+        desc = "Toggle Terminal",
+      },
+      {
+        "<c-`>",
+        function()
+          Snacks.terminal.toggle()
+        end,
+        desc = "Toggle Terminal",
+      },
+    },
     opts = {
       bigfile = {
         enabled = true,
@@ -38,6 +64,14 @@ return {
       },
       words = {
         enabled = true,
+      },
+      terminal = {
+        enabled = true,
+        win = {
+          style = "terminal",
+          position = "bottom",
+          height = 0.4,
+        },
       },
       indent = {
         enabled = true,
@@ -99,5 +133,5 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  }
+  },
 }
