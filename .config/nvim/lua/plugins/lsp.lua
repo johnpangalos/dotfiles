@@ -71,7 +71,7 @@ return {
       })
 
       -- Enable LSP for configured servers
-      vim.lsp.enable({ 'lua_ls', 'vtsls', "eslint" })
+      vim.lsp.enable({ 'lua_ls', 'vtsls', "eslint", "jsonls", "oxlint" })
     end
   }
 }
