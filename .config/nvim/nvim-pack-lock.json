@@ -1,0 +1,20 @@
+{
+  "plugins": {
+    "conform.nvim": {
+      "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "0b38bc74487e73489624d61396af7805af9cc75f",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "99dfc5acefd7728cec4ad0d0a6a9720f2c2896ff",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "wip.nvim": {
+      "rev": "b1050008c7656a8e8f9b88faeb5416a9c3678e1b",
+      "src": "https://github.com/johnpangalos/wip.nvim"
+    }
+  }
+}

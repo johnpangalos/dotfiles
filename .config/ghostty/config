@@ -1,5 +1,6 @@
-theme = catppuccin-mocha
+# theme = dark:Ayu, light:Ayu Light
 
 macos-option-as-alt = true
 cursor-invert-fg-bg = true
 keybind = shift+enter=text:\x1b\r
+

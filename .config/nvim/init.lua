@@ -1,69 +1,39 @@
-local g = vim.g
-local o = vim.o
+vim.g.mapleader = ","
 
-g.mapleader = ","
+vim.o.splitright = true
+vim.o.splitbelow = true
 
-o.hidden = true
-o.splitright = true
-o.splitbelow = true
-o.clipboard = vim.o.clipboard .. "unnamedplus"
-o.mouse = "a"
-o.number = true
-o.tabstop = 2
-o.softtabstop = 0
-o.expandtab = true
-o.shiftwidth = 2
-o.smarttab = true
-o.completeopt = "menuone,noselect"
-vim.cmd([[set shortmess+=c]])
+vim.o.clipboard = vim.o.clipboard .. "unnamedplus"
+vim.o.mouse = "a"
 
-vim.opt.termguicolors = true
-vim.cmd([[syntax enable]])
+vim.o.number = true
 
--- Setup lazy vim https://github.com/folke/lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
+-- tabs / spacing
+vim.o.tabstop = 2
+vim.o.softtabstop = 0
+vim.o.expandtab = true
+vim.o.smarttab = true
 
-vim.opt.rtp:prepend(lazypath)
+-- use the normal ripgrep as it excludes .gitignore files keeping the --vimgrep
+-- flag as it ensure compatibility with vim
+vim.o.grepprg = "rg --vimgrep"
 
-vim.g.markdown_fenced_languages = {
-  "ts=typescript",
-}
+-- colors
+vim.cmd([[ syntax enable ]])
 
-require("lazy").setup({
-  spec = {
-    { import = "plugins" },
-  },
-  change_detection = {
-    notify = false,
-  },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "rplugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
+vim.pack.add({
+  "https://github.com/stevearc/conform.nvim",
+  "https://github.com/neovim/nvim-lspconfig",
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/johnpangalos/wip.nvim",
+})
+
+-- formatter setup
+require("conform").setup({
+  format_on_save = {
+    lsp_fallback = true,
+    timeout_ms = 500,
   },
 })
 
-vim.lsp.completion.enable()
+require("wip").setup()
