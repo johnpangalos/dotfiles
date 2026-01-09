@@ -79,6 +79,9 @@ vared -p 'Would you like to (re)install dark mode binary?: (Y/n) ' -c SHOULD_INS
       echo "Installing dark mode notify binary"
       sudo mkdir -p /usr/local/bin/
       sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
+      sudo cp ./dark-mode-notify /usr/local/bin/dark-mode-notify
+      cp ./Library/LaunchAgents/ke.bou.dark-mode-notify.plist ~/Library/LaunchAgents/
+      cp ./.change_background.sh $HOME/
 
       UID=$(id -u)
       if launchctl print gui/$UID/ke.bou.dark-mode-notify > /dev/null 2>&1 ; then

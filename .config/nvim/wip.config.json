@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/johnpangalos/wip.nvim/refs/heads/main/schema.json",
   "languages": [
     {
       "name": "typescript",
@@ -10,7 +11,7 @@
         "javascriptreact"
       ],
       "treesitters": ["typescript", "tsx", "javascript", "jsx"],
-      "formatters": ["prettier"]
+      "formatters": ["prettierd"]
     },
     {
       "name": "go",
@@ -20,11 +21,24 @@
       "formatters": ["gofmt"]
     },
     {
+      "name": "astro",
+      "lsp": ["astro"],
+      "file_types": ["astro"],
+      "treesitters": ["astro"],
+      "formatters": ["prettierd"]
+    },
+    {
       "name": "json",
       "lsp": ["jsonls"],
       "file_types": ["json"],
       "treesitters": ["json"],
-      "formatters": ["prettier"]
+      "formatters": ["prettierd"]
+    },
+    {
+      "name": "css",
+      "file_types": ["css"],
+      "treesitters": ["css"],
+      "formatters": ["prettierd"]
     },
     {
       "name": "lua",

@@ -1,4 +1,4 @@
-# theme = dark:Ayu, light:Ayu Light
+theme = dark:TokyoNight, light:TokyoNight Day
 
 macos-option-as-alt = true
 cursor-invert-fg-bg = true
