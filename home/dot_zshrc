@@ -3,7 +3,6 @@ export LANG=en_US.UTF-8
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/opt/homebrew/bin/mise activate zsh)"
-eval "$(fnm env --use-on-cd --corepack-enabled --shell zsh)"
 
 if type brew &>/dev/null
 then

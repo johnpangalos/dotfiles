@@ -2,11 +2,11 @@
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-if ! (( $+commands[node] )) && (( $+commands[fnm] )); then
-  echo "Node not found, installing..."
-  fnm install --lts
-  fnm default lts-latest
-  eval "$(fnm env)"
+if ! (( $+commands[node] )) && (( $+commands[mise] )); then
+  echo "Node not found, installing via mise..."
+  mise install node@lts
+  mise use --global node@lts
+  eval "$(mise activate zsh)"
 
   echo "Enabling corepack and installing pnpm..."
   corepack enable
