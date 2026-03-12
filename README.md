@@ -1,7 +1,9 @@
 # dotfiles
 
-Run the following to bootstrap your computer:
+Managed with [chezmoi](https://www.chezmoi.io/).
+
+## Bootstrap a new machine
 
 ```
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/johnpangalos/dotfiles/main/setup-mac.zsh)"
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply johnpangalos
 ```

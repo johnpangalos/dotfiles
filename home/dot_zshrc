@@ -3,7 +3,6 @@ export LANG=en_US.UTF-8
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/opt/homebrew/bin/mise activate zsh)"
-eval "$(fnm env --use-on-cd --corepack-enabled --shell zsh)"
 
 if type brew &>/dev/null
 then
@@ -59,13 +58,6 @@ esac
 if command -v gcloud &> /dev/null; then
   source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
   source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
-fi
-
-if command -v wezterm &> /dev/null; then
-  mkdir -p $HOME/.config/wezterm
-  wezterm shell-completion --shell zsh > $HOME/.config/wezterm/completions.zsh
-  source "$HOME/.config/wezterm/completions.zsh"
-  alias wez="wezterm cli"
 fi
 
 export PATH="${PATH}:${HOME}/.krew/bin"
