@@ -1,0 +1,11 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/zsh
+
+if ! (( $+commands[brew] )); then
+  echo "Brew not found, installing..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+brew bundle --no-lock --file={{ joinPath .chezmoi.sourceDir ".." "Brewfile" | quote }}
+{{ end -}}

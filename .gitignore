@@ -1,5 +1,2 @@
-nvim/plugin/packer_compiled.lua
-Library/LaunchAgents/dev.pangalos.tcp-docker-connection.plist
-
-# Removing the nvim lock file as it is hard to keep in sync
-.config/nvim/lazy-lock.json
+# chezmoi state
+home/private_dot_config/nvim/nvim-pack-lock.json
