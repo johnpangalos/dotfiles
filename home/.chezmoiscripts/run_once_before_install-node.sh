@@ -8,8 +8,9 @@ if ! (( $+commands[node] )) && (( $+commands[fnm] )); then
   fnm default lts-latest
   eval "$(fnm env)"
 
-  echo "Installing pnpm"
-  curl -fsSL https://get.pnpm.io/install.sh | sh -
+  echo "Enabling corepack and installing pnpm..."
+  corepack enable
+  corepack prepare pnpm@latest --activate
 else
   echo "Node found, skipping install."
 fi
