@@ -1,2 +1,6 @@
 # chezmoi state
 home/private_dot_config/nvim/nvim-pack-lock.json
+
+# claude code
+.claude/settings.local.json
+.claude/worktrees/
