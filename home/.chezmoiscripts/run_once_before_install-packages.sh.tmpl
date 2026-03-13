@@ -7,5 +7,10 @@ if ! (( $+commands[brew] )); then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew bundle --no-lock --file={{ joinPath .chezmoi.sourceDir ".." "Brewfile" | quote }}
+brew bundle --file={{ joinPath .chezmoi.sourceDir ".." "Brewfile" | quote }} --no-upgrade || echo "Some packages failed to install (may need sudo). Continuing..."
+{{ if .work -}}
+brew bundle --file={{ joinPath .chezmoi.sourceDir ".." "Brewfile.work" | quote }} --no-upgrade || echo "Some work packages failed to install (may need sudo). Continuing..."
+{{ else -}}
+brew bundle --file={{ joinPath .chezmoi.sourceDir ".." "Brewfile.personal" | quote }} --no-upgrade || echo "Some personal packages failed to install. Continuing..."
+{{ end -}}
 {{ end -}}
