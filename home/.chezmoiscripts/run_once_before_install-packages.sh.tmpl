@@ -7,5 +7,5 @@ if ! (( $+commands[brew] )); then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew bundle --no-lock --file={{ joinPath .chezmoi.sourceDir ".." "Brewfile" | quote }}
+brew bundle --file={{ joinPath .chezmoi.sourceDir ".." "Brewfile" | quote }}
 {{ end -}}

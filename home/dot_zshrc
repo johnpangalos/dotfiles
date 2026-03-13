@@ -41,10 +41,6 @@ alias sed="gsed"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export PATH="$(brew --prefix llvm@13)/bin:$HOME/.bun-tools/zig:$PATH"
-
-export LDFLAGS="$LDFLAGS -L$(brew --prefix llvm@13)/lib"
-export CPPFLAGS="$CPPFLAGS -I$(brew --prefix llvm@13)/include"
 
 alias config="(cd ~/.dotfiles && vim)"
 
