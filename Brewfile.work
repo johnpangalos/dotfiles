@@ -1,2 +1,5 @@
 cask "karabiner-elements"
 cask "docker"
+cask "microsoft-outlook"
+cask "microsoft-teams"
+cask "figma"
