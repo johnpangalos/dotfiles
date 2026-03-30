@@ -72,6 +72,24 @@ vim.keymap.set("n", "<Leader>e", function()
   snacks.explorer({ include = { "dist" } })
 end)
 
+-- Quit neovim when :q would leave only snacks windows (e.g. explorer)
+vim.api.nvim_create_autocmd("QuitPre", {
+  callback = function()
+    local wins = vim.api.nvim_list_wins()
+    local non_snacks = 0
+    for _, win in ipairs(wins) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local ft = vim.bo[buf].filetype
+      if not ft:find("^snacks_") then
+        non_snacks = non_snacks + 1
+      end
+    end
+    if non_snacks <= 1 then
+      vim.cmd("qa")
+    end
+  end,
+})
+
 local autoDarkMode = require("auto-dark-mode")
 
 autoDarkMode.setup({
