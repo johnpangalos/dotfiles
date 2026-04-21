@@ -57,7 +57,7 @@ local snacks = require("snacks")
 
 -- pickers
 vim.keymap.set("n", "<Leader><space>", function()
-  snacks.picker.smart()
+  snacks.picker.files()
 end)
 
 vim.keymap.set("n", "<Leader>,", function()
