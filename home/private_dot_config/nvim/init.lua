@@ -28,7 +28,7 @@ vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/johnpangalos/wip.nvim",
   "https://github.com/folke/snacks.nvim",
-  "https://github.com/folke/tokyonight.nvim",
+  "https://github.com/Shatur/neovim-ayu",
   "https://github.com/f-person/auto-dark-mode.nvim",
 })
 
@@ -92,12 +92,14 @@ vim.api.nvim_create_autocmd("QuitPre", {
 
 local autoDarkMode = require("auto-dark-mode")
 
+require("ayu").setup()
+
 autoDarkMode.setup({
   set_dark_mode = function()
-    vim.cmd("colorscheme tokyonight-night")
+    vim.cmd("colorscheme ayu-dark")
   end,
 
   set_light_mode = function()
-    vim.cmd("colorscheme tokyonight-day")
+    vim.cmd("colorscheme ayu-light")
   end,
 })

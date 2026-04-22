@@ -41,8 +41,8 @@ Machine-specific values (name, email) are prompted once during `chezmoi init` vi
   - `<leader>/` — Grep picker
   - `<leader>e` — File explorer (snacks.nvim)
 - **Formatting**: conform.nvim with `format_on_save` enabled, LSP fallback
-- **Theme**: TokyoNight with auto-dark-mode.nvim (night/day switching)
-- **Plugins**: conform.nvim, nvim-lspconfig, nvim-treesitter, snacks.nvim, tokyonight.nvim, auto-dark-mode.nvim, wip.nvim
+- **Theme**: Ayu (Shatur/neovim-ayu) with auto-dark-mode.nvim (dark/light switching)
+- **Plugins**: conform.nvim, nvim-lspconfig, nvim-treesitter, snacks.nvim, neovim-ayu, auto-dark-mode.nvim, wip.nvim
 
 ### Toolchain
 
