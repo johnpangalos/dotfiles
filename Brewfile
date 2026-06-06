@@ -14,6 +14,7 @@ brew "chezmoi"
 brew "shfmt"
 brew "stylua"
 brew "node"
+brew "tmux"
 
 cask "firefox"
 cask "rectangle"
