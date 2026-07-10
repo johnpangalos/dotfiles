@@ -31,9 +31,9 @@ vim.pack.add({
   "https://github.com/folke/tokyonight.nvim",
   "https://github.com/f-person/auto-dark-mode.nvim",
   "https://github.com/lewis6991/gitsigns.nvim",
-  "https://github.com/nvim-lua/plenary.nvim",
-  "https://github.com/sindrets/diffview.nvim",
 })
+-- diffview.nvim is vendored in pack/vendor/start/ (upstream unmaintained),
+-- loaded via native packpath rather than vim.pack
 
 -- lsp setup
 vim.keymap.set("n", "gd", function()
