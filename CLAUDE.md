@@ -40,9 +40,13 @@ Machine-specific values (name, email) are prompted once during `chezmoi init` vi
   - `<leader>,` — Buffer picker
   - `<leader>/` — Grep picker
   - `<leader>e` — File explorer (snacks.nvim)
+  - `<leader>gs` — Git status picker: changed files (snacks.nvim)
+  - `<leader>gh` — Git hunk picker across the repo (snacks.nvim)
+  - `<leader>gd` — Toggle PR-style review mode (diffview.nvim)
+  - `]c` / `[c` — Next/previous hunk; `<leader>gp/gr/ga/gb` — preview/reset/stage hunk, blame line (gitsigns.nvim)
 - **Formatting**: conform.nvim with `format_on_save` enabled, LSP fallback
 - **Theme**: TokyoNight with auto-dark-mode.nvim (night/day switching)
-- **Plugins**: conform.nvim, nvim-lspconfig, nvim-treesitter, snacks.nvim, tokyonight.nvim, auto-dark-mode.nvim, wip.nvim
+- **Plugins**: conform.nvim, nvim-lspconfig, nvim-treesitter, snacks.nvim, tokyonight.nvim, auto-dark-mode.nvim, wip.nvim, gitsigns.nvim, diffview.nvim (+ plenary.nvim dependency)
 
 ### Toolchain
 
