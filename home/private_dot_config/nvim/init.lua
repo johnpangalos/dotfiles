@@ -32,8 +32,6 @@ vim.pack.add({
   "https://github.com/f-person/auto-dark-mode.nvim",
   "https://github.com/lewis6991/gitsigns.nvim",
 })
--- diffview.nvim is vendored in pack/vendor/start/ (upstream unmaintained),
--- loaded via native packpath rather than vim.pack
 
 -- lsp setup
 vim.keymap.set("n", "gd", function()
@@ -104,8 +102,6 @@ require("gitsigns").setup({
   end,
 })
 
-require("diffview").setup()
-
 -- changed files picker
 vim.keymap.set("n", "<Leader>gs", function()
   snacks.picker.git_status()
@@ -116,14 +112,9 @@ vim.keymap.set("n", "<Leader>gh", function()
   snacks.picker.git_diff()
 end)
 
--- PR-style review mode: file panel + side-by-side diff, unchanged code folded
+-- side-by-side diff of the current buffer against the index (native diff mode)
 vim.keymap.set("n", "<Leader>gd", function()
-  local lib = require("diffview.lib")
-  if lib.get_current_view() then
-    vim.cmd("DiffviewClose")
-  else
-    vim.cmd("DiffviewOpen")
-  end
+  require("gitsigns").diffthis()
 end)
 
 -- Quit neovim when :q would leave only snacks windows (e.g. explorer)

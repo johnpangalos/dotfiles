@@ -16,3 +16,11 @@
 	conflictstyle = zdiff3
 [diff]
 	colorMoved = default
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[difftool]
+	prompt = false
+[alias]
+	# structural (syntax-aware) diff via difftastic
+	dft = -c diff.external=difft diff
+	dlog = -c diff.external=difft log -p --ext-diff
